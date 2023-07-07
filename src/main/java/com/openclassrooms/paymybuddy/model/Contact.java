@@ -8,32 +8,38 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "utilisateur")
-public class Utilisateur {
+@Table(name = "contact")
+public class Contact {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "utilisateur_id")
-	private int utilisateurId;
+	@Column(name = "contact_id")
+	private int contactId;
 	
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "mot_de_passe")
-	private String motDePasse;
+	@Column(name = "telephone")
+	private String telephone;
 	
 	@Column(name = "nom")
 	private String nom;
 	
 	@Column(name = "prenom")
 	private String prenom;
+	
+	@Column(name = "surnom")
+	private String surnom;
+	
+	@Column(name = "commentaire")
+	private String commentaire;
 
 	public int getUtilisateurId() {
-		return utilisateurId;
+		return contactId;
 	}
 
 	public void setUtilisateurId(int utilisateurId) {
-		this.utilisateurId = utilisateurId;
+		this.contactId = utilisateurId;
 	}
 
 	public String getEmail() {
@@ -44,12 +50,12 @@ public class Utilisateur {
 		this.email = email;
 	}
 
-	public String getMotDePasse() {
-		return motDePasse;
+	public String getTelephone() {
+		return telephone;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 	public String getNom() {
@@ -67,6 +73,21 @@ public class Utilisateur {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	
+
+	public String getSurnom() {
+		return surnom;
+	}
+
+	public void setSurnom(String surnom) {
+		this.surnom = surnom;
+	}
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 
 }
