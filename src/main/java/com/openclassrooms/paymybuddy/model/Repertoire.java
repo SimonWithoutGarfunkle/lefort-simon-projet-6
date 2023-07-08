@@ -17,6 +17,7 @@ public class Repertoire {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "repertoire_id")
 	private int repertoireId;
+	// test synchro
 	
 	@Column(name = "contacts")
 	private List<Contact> contacts;
