@@ -5,9 +5,13 @@ import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,12 +22,15 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "transaction_id")
 	private int transactionId;
+
+    @ManyToOne
+    @JoinColumn(name = "emetteur_id")
+    private Utilisateur emetteur;
+
+    @ManyToOne
+    @JoinColumn(name = "destinataire_id")
+    private Utilisateur destinataire;
 	
-	@Column(name = "emetteur")
-	private Utilisateur emetteur;
-	
-	@Column(name = "destinataire")
-	private Utilisateur destinataire;
 	
 	@Column(name = "somme")
 	private BigDecimal somme;
@@ -35,9 +42,11 @@ public class Transaction {
 	private Date horodatage;
 	
 	@Column(name = "status")
+	@Enumerated(EnumType.STRING)
 	private StatusTransaction status;
 	
 	@Column(name = "etat_facturation")
+	@Enumerated(EnumType.STRING)
 	private EtatFacturation etatFacturation;
 
 	public int getTransactionId() {

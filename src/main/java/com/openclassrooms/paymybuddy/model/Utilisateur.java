@@ -1,10 +1,14 @@
 package com.openclassrooms.paymybuddy.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +31,39 @@ public class Utilisateur {
 	
 	@Column(name = "prenom")
 	private String prenom;
+	
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+	private List<Contact> contacts;
+	
+	@OneToMany(mappedBy = "emetteur", cascade = CascadeType.ALL)
+    private List<Transaction> transactionsEmises;
+
+    @OneToMany(mappedBy = "destinataire", cascade = CascadeType.ALL)
+    private List<Transaction> transactionsRecues;
+	
+    public List<Transaction> getTransactionsEmises() {
+		return transactionsEmises;
+	}
+
+	public void setTransactionsEmises(List<Transaction> transactionsEmises) {
+		this.transactionsEmises = transactionsEmises;
+	}
+
+	public List<Transaction> getTransactionsRecues() {
+		return transactionsRecues;
+	}
+
+	public void setTransactionsRecues(List<Transaction> transactionsRecues) {
+		this.transactionsRecues = transactionsRecues;
+	}
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
 
 	public int getUtilisateurId() {
 		return utilisateurId;
