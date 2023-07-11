@@ -47,6 +47,22 @@ public class Utilisateur {
     private ComptePMB comptePMB;
 	
 
+	public RIB getRib() {
+		return rib;
+	}
+
+	public void setRib(RIB rib) {
+		this.rib = rib;
+	}
+
+	public ComptePMB getComptePMB() {
+		return comptePMB;
+	}
+
+	public void setComptePMB(ComptePMB comptePMB) {
+		this.comptePMB = comptePMB;
+	}
+
 	public List<Contact> getContacts() {
 		return contacts;
 	}

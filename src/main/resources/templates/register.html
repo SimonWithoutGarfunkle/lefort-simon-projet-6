@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/Styles/register.css}" rel="stylesheet" />
+  <title>Register</title>
+</head>
+
+<body>
+  <header>
+    <nav class="menu">
+        <ul>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="transactions.html">Transfer</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+  </header>
+
+  <div class="login-container">
+    <div class="login-form">
+      <h2>Votre inscription</h2>
+      <form  action="#" th:action="@{/register/confirmRegister}" th:object="${utilisateur}" method="post">
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Saisissez votre prénom" th:field="*{prenom}" required>
+        </div>
+        <div class="form-group">
+            <label for="prenom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Saisissez votre nom" th:field="*{nom}" required>
+          </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Saisissez votre email" th:field="*{email}" required>
+          </div>
+        <div class="form-group">
+            <label for="motdepasse">Mot de passe</label>
+            <input type="password" id="motdepasse" name="motdepasse" placeholder="Saisissez votre mot de passe" th:field="*{motDePasse}" required>
+          </div>
+        <div class="form-group">
+          <button type="submit">S'inscrire</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+  </footer>
+</body>
+
+</html>
+

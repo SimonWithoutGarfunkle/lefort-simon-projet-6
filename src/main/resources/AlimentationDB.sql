@@ -1,7 +1,13 @@
 --Suppression des données existantes
 DELETE FROM transaction;
 DELETE FROM utilisateur;
+DELETE FROM comptepmb;
+DELETE FROM rib;
+DELETE FROM contact;
+ALTER TABLE contact AUTO_INCREMENT = 1;
 ALTER TABLE utilisateur AUTO_INCREMENT = 1;
+ALTER TABLE rib AUTO_INCREMENT = 1;
+ALTER TABLE comptepmb AUTO_INCREMENT = 1;
 ALTER TABLE transaction AUTO_INCREMENT = 1;
 
 -- Insertion des comptes

@@ -22,4 +22,28 @@ public class RIB {
 	@Column(name = "bic")
 	private String BIC;
 
+	public int getRibId() {
+		return ribId;
+	}
+
+	public void setRibId(int ribId) {
+		this.ribId = ribId;
+	}
+
+	public String getIBAN() {
+		return IBAN;
+	}
+
+	public void setIBAN(String iBAN) {
+		IBAN = iBAN;
+	}
+
+	public String getBIC() {
+		return BIC;
+	}
+
+	public void setBIC(String bIC) {
+		BIC = bIC;
+	}
+
 }
