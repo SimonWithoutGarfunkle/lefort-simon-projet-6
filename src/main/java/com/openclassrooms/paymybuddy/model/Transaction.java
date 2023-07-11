@@ -3,6 +3,7 @@ package com.openclassrooms.paymybuddy.model;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -25,13 +26,14 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "emetteur_id")
-    private Utilisateur emetteur;
+    @JsonBackReference
+    private ComptePMB emetteur;
 
     @ManyToOne
     @JoinColumn(name = "destinataire_id")
-    private Utilisateur destinataire;
-	
-	
+    @JsonBackReference
+    private ComptePMB destinataire;
+		
 	@Column(name = "somme")
 	private BigDecimal somme;
 	
@@ -57,19 +59,19 @@ public class Transaction {
 		this.transactionId = transactionId;
 	}
 
-	public Utilisateur getEmetteur() {
+	public ComptePMB getEmetteur() {
 		return emetteur;
 	}
 
-	public void setEmetteur(Utilisateur emetteur) {
+	public void setEmetteur(ComptePMB emetteur) {
 		this.emetteur = emetteur;
 	}
 
-	public Utilisateur getDestinataire() {
+	public ComptePMB getDestinataire() {
 		return destinataire;
 	}
 
-	public void setDestinataire(Utilisateur destinataire) {
+	public void setDestinataire(ComptePMB destinataire) {
 		this.destinataire = destinataire;
 	}
 

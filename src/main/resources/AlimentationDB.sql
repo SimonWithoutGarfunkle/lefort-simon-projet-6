@@ -1,3 +1,18 @@
+--Suppression des données existantes
+DELETE FROM transaction;
+DELETE FROM utilisateur;
+ALTER TABLE utilisateur AUTO_INCREMENT = 1;
+ALTER TABLE transaction AUTO_INCREMENT = 1;
+
+-- Insertion des comptes
+INSERT INTO comptepmb (montant)
+VALUES
+    (1000.0),
+    (2000.0),
+    (3000.0),
+    (4000.0),
+    (5000.0);
+
 -- Insertion des utilisateurs
 INSERT INTO utilisateur (email, mot_de_passe, nom, prenom)
 VALUES

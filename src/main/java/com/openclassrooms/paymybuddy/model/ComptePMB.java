@@ -1,12 +1,16 @@
 package com.openclassrooms.paymybuddy.model;
 
 import java.math.BigDecimal;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +24,14 @@ public class ComptePMB {
 	
 	@Column(name = "montant")
 	private BigDecimal montant;
+	
+	@OneToMany(mappedBy = "emetteur")
+	@JsonManagedReference
+    private List<Transaction> transactionsEmises;
+
+    @OneToMany(mappedBy = "destinataire")
+    @JsonManagedReference
+    private List<Transaction> transactionsRecues;
 
 	public int getComptePMBId() {
 		return comptePMBId;
@@ -27,6 +39,22 @@ public class ComptePMB {
 
 	public void setComptePMBId(int comptePMBId) {
 		this.comptePMBId = comptePMBId;
+	}
+
+	public List<Transaction> getTransactionsEmises() {
+		return transactionsEmises;
+	}
+
+	public void setTransactionsEmises(List<Transaction> transactionsEmises) {
+		this.transactionsEmises = transactionsEmises;
+	}
+
+	public List<Transaction> getTransactionsRecues() {
+		return transactionsRecues;
+	}
+
+	public void setTransactionsRecues(List<Transaction> transactionsRecues) {
+		this.transactionsRecues = transactionsRecues;
 	}
 
 	public BigDecimal getMontant() {

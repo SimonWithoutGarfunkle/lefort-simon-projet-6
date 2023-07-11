@@ -5,10 +5,13 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,30 +35,17 @@ public class Utilisateur {
 	@Column(name = "prenom")
 	private String prenom;
 	
-	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Contact> contacts;
+	    
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "rib_id")
+    private RIB rib;
+    
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "comptePMB_id")
+    private ComptePMB comptePMB;
 	
-	@OneToMany(mappedBy = "emetteur", cascade = CascadeType.ALL)
-    private List<Transaction> transactionsEmises;
-
-    @OneToMany(mappedBy = "destinataire", cascade = CascadeType.ALL)
-    private List<Transaction> transactionsRecues;
-	
-    public List<Transaction> getTransactionsEmises() {
-		return transactionsEmises;
-	}
-
-	public void setTransactionsEmises(List<Transaction> transactionsEmises) {
-		this.transactionsEmises = transactionsEmises;
-	}
-
-	public List<Transaction> getTransactionsRecues() {
-		return transactionsRecues;
-	}
-
-	public void setTransactionsRecues(List<Transaction> transactionsRecues) {
-		this.transactionsRecues = transactionsRecues;
-	}
 
 	public List<Contact> getContacts() {
 		return contacts;
