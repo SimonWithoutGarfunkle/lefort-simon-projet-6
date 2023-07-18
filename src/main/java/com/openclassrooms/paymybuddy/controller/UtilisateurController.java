@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
@@ -18,15 +20,32 @@ public class UtilisateurController {
 	@Autowired
 	private UtilisateurService utilisateurService;
 
-	@GetMapping("/register")
-	public String getRegister(Model model) {
-		model.addAttribute("utilisateur", new Utilisateur());
-		return "register";
+	
+	
+	@GetMapping("/dashboard")
+	public String getDashboard() {
+		return "dashboard";
 	}
 	
 	@GetMapping("/login")
 	public String getLogin() {
 		return "login";
+	}
+	
+	@PostMapping("/login")
+    public String authentifierUtilisateur(@RequestParam("email") String email, @RequestParam("motdepasse") String motDePasse, Model model) {
+        if (utilisateurService.loginUtilisateur(email, motDePasse)) {          
+            return "redirect:/dashboard";
+        } else {
+            model.addAttribute("error", "Identifiants invalides");
+            return "login";
+        }
+    }
+	
+	@GetMapping("/register")
+	public String getRegister(Model model) {
+		model.addAttribute("utilisateur", new Utilisateur());
+		return "register";
 	}
 	
 	@PostMapping("/register/confirmRegister")

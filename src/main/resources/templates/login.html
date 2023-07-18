@@ -22,7 +22,7 @@ xmlns:th="http://www.thymeleaf.org">
   <div class="login-container">
     <div class="login-form">
         <h2>Connexion</h2>
-        <form action="#" method="post">
+        <form action="/login" method="post">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Saisissez votre email" required>
@@ -33,6 +33,7 @@ xmlns:th="http://www.thymeleaf.org">
             </div>
             <div class="form-group">
                 <button type="submit">Se connecter</button>
+                <span th:if="${error}" class="error-message" th:text="${errorMessage}"></span>
             </div>
         </form>
         <p class="register-link">Pas encore inscrit ? <a href="/register">Inscrivez-vous ici</a></p>

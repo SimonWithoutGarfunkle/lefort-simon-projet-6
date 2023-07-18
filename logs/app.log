@@ -705,3 +705,197 @@ This generated password is for development use only. Your security configuration
 2023-07-18T11:54:34.289+02:00  INFO 16680 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-07-18T11:54:34.291+02:00  INFO 16680 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-07-18T11:54:34.296+02:00  INFO 16680 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-18T12:05:02.971+02:00  INFO 1352 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 1352 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-18T12:05:02.972+02:00  INFO 1352 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-18T12:05:03.407+02:00  INFO 1352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-18T12:05:03.446+02:00  INFO 1352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 2 JPA repository interfaces.
+2023-07-18T12:05:03.757+02:00  INFO 1352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-18T12:05:03.763+02:00  INFO 1352 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-18T12:05:03.763+02:00  INFO 1352 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-18T12:05:03.829+02:00  INFO 1352 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-18T12:05:03.830+02:00  INFO 1352 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 831 ms
+2023-07-18T12:05:03.914+02:00  INFO 1352 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-18T12:05:03.946+02:00  INFO 1352 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-18T12:05:03.948+02:00  INFO 1352 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-18T12:05:04.029+02:00  INFO 1352 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T12:05:04.112+02:00  INFO 1352 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-18T12:05:04.125+02:00  INFO 1352 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-18T12:05:04.303+02:00  INFO 1352 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1182d1df
+2023-07-18T12:05:04.304+02:00  INFO 1352 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-18T12:05:04.335+02:00  WARN 1352 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-07-18T12:05:04.488+02:00  INFO 1352 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T12:05:04.955+02:00  INFO 1352 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-18T12:05:05.024+02:00  INFO 1352 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T12:05:05.264+02:00  WARN 1352 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-18T12:05:05.466+02:00  INFO 1352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-18T12:05:05.471+02:00  INFO 1352 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 2.783 seconds (process running for 3.241)
+2023-07-18T12:09:03.010+02:00  INFO 1352 --- [RMI TCP Connection(13)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-18T12:09:03.021+02:00  INFO 1352 --- [RMI TCP Connection(13)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-18T12:09:03.028+02:00  INFO 1352 --- [RMI TCP Connection(13)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T12:09:03.030+02:00  INFO 1352 --- [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-18T12:09:03.035+02:00  INFO 1352 --- [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-18T12:09:04.905+02:00  INFO 9168 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 9168 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-18T12:09:04.907+02:00  INFO 9168 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-18T12:09:05.259+02:00  INFO 9168 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-18T12:09:05.292+02:00  INFO 9168 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 2 JPA repository interfaces.
+2023-07-18T12:09:05.591+02:00  INFO 9168 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-18T12:09:05.597+02:00  INFO 9168 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-18T12:09:05.597+02:00  INFO 9168 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-18T12:09:05.664+02:00  INFO 9168 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-18T12:09:05.664+02:00  INFO 9168 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 732 ms
+2023-07-18T12:09:05.749+02:00  INFO 9168 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-18T12:09:05.780+02:00  INFO 9168 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-18T12:09:05.782+02:00  INFO 9168 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-18T12:09:05.864+02:00  INFO 9168 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T12:09:05.949+02:00  INFO 9168 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-18T12:09:05.963+02:00  INFO 9168 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-18T12:09:06.138+02:00  INFO 9168 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1182d1df
+2023-07-18T12:09:06.139+02:00  INFO 9168 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-18T12:09:06.168+02:00  WARN 9168 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-07-18T12:09:06.316+02:00  INFO 9168 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T12:09:06.777+02:00  INFO 9168 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-18T12:09:06.842+02:00  INFO 9168 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T12:09:07.086+02:00  WARN 9168 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-18T12:09:07.294+02:00  INFO 9168 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-18T12:09:07.300+02:00  INFO 9168 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 2.645 seconds (process running for 3.018)
+2023-07-18T12:09:59.774+02:00  INFO 9168 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-18T12:09:59.784+02:00  INFO 9168 --- [RMI TCP Connection(9)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-18T12:09:59.790+02:00  INFO 9168 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T12:09:59.791+02:00  INFO 9168 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-18T12:09:59.797+02:00  INFO 9168 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-18T12:10:04.235+02:00  INFO 7892 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 7892 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-18T12:10:04.236+02:00  INFO 7892 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-18T12:10:04.605+02:00  INFO 7892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-18T12:10:04.640+02:00  INFO 7892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2023-07-18T12:10:04.947+02:00  INFO 7892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-18T12:10:04.953+02:00  INFO 7892 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-18T12:10:04.953+02:00  INFO 7892 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-18T12:10:05.019+02:00  INFO 7892 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-18T12:10:05.019+02:00  INFO 7892 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 756 ms
+2023-07-18T12:10:05.102+02:00  INFO 7892 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-18T12:10:05.134+02:00  INFO 7892 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-18T12:10:05.136+02:00  INFO 7892 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-18T12:10:05.222+02:00  INFO 7892 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T12:10:05.307+02:00  INFO 7892 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-18T12:10:05.320+02:00  INFO 7892 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-18T12:10:05.498+02:00  INFO 7892 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31c7c281
+2023-07-18T12:10:05.500+02:00  INFO 7892 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-18T12:10:05.531+02:00  WARN 7892 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-07-18T12:10:05.684+02:00  INFO 7892 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T12:10:06.156+02:00  INFO 7892 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-18T12:10:06.223+02:00  INFO 7892 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T12:10:06.471+02:00  WARN 7892 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-18T12:10:06.681+02:00  INFO 7892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-18T12:10:06.685+02:00  INFO 7892 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 2.701 seconds (process running for 3.074)
+2023-07-18T12:15:51.445+02:00  INFO 7892 --- [RMI TCP Connection(14)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-18T12:15:51.456+02:00  INFO 7892 --- [RMI TCP Connection(14)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-18T12:15:51.462+02:00  INFO 7892 --- [RMI TCP Connection(14)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T12:15:51.463+02:00  INFO 7892 --- [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-18T12:15:51.468+02:00  INFO 7892 --- [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-18T16:27:36.902+02:00  INFO 15544 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 15544 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-18T16:27:36.903+02:00  INFO 15544 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-18T16:27:37.278+02:00  INFO 15544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-18T16:27:37.315+02:00  INFO 15544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 2 JPA repository interfaces.
+2023-07-18T16:27:37.688+02:00  INFO 15544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-18T16:27:37.695+02:00  INFO 15544 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-18T16:27:37.695+02:00  INFO 15544 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-18T16:27:37.766+02:00  INFO 15544 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-18T16:27:37.766+02:00  INFO 15544 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 836 ms
+2023-07-18T16:27:37.868+02:00  INFO 15544 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-18T16:27:37.921+02:00  INFO 15544 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-18T16:27:37.922+02:00  INFO 15544 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-18T16:27:38.031+02:00  INFO 15544 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T16:27:38.147+02:00  INFO 15544 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-18T16:27:38.161+02:00  INFO 15544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-18T16:27:38.368+02:00  INFO 15544 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@145e958f
+2023-07-18T16:27:38.370+02:00  INFO 15544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-18T16:27:38.414+02:00  WARN 15544 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-07-18T16:27:38.582+02:00  INFO 15544 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T16:27:39.125+02:00  INFO 15544 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-18T16:27:39.224+02:00  INFO 15544 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T16:27:39.507+02:00  WARN 15544 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-18T16:27:39.739+02:00  WARN 15544 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 30e5a4ae-8430-4334-bfa1-d767cb492220
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-07-18T16:27:39.820+02:00  INFO 15544 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@77331437, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@98a0842, org.springframework.security.web.context.SecurityContextHolderFilter@55f54852, org.springframework.security.web.header.HeaderWriterFilter@5be8a92c, org.springframework.security.web.csrf.CsrfFilter@19a544cd, org.springframework.security.web.authentication.logout.LogoutFilter@21b792c2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@62b2bc2e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@53630682, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@56f569e, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@156d7556, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5af8ef61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2e76ade9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@525c0f74, org.springframework.security.web.access.ExceptionTranslationFilter@66c91224, org.springframework.security.web.access.intercept.AuthorizationFilter@7e0393df]
+2023-07-18T16:27:39.858+02:00  INFO 15544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-18T16:27:39.864+02:00  INFO 15544 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 3.212 seconds (process running for 3.603)
+2023-07-18T16:27:46.492+02:00  INFO 15544 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-18T16:27:46.493+02:00  INFO 15544 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-07-18T16:27:46.493+02:00  INFO 15544 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-07-18T16:28:08.536+02:00  INFO 15544 --- [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-18T16:28:08.546+02:00  INFO 15544 --- [RMI TCP Connection(10)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-18T16:28:08.547+02:00  INFO 15544 --- [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-18T16:28:08.552+02:00  INFO 15544 --- [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T16:28:08.553+02:00  INFO 15544 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-18T16:28:08.558+02:00  INFO 15544 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-18T16:28:19.393+02:00  INFO 9228 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 9228 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-18T16:28:19.395+02:00  INFO 9228 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-18T16:28:19.813+02:00  INFO 9228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-18T16:28:19.848+02:00  INFO 9228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 2 JPA repository interfaces.
+2023-07-18T16:28:20.152+02:00  INFO 9228 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-18T16:28:20.159+02:00  INFO 9228 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-18T16:28:20.159+02:00  INFO 9228 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-18T16:28:20.240+02:00  INFO 9228 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-18T16:28:20.240+02:00  INFO 9228 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 818 ms
+2023-07-18T16:28:20.349+02:00  INFO 9228 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-18T16:28:20.393+02:00  INFO 9228 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-18T16:28:20.394+02:00  INFO 9228 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-18T16:28:20.506+02:00  INFO 9228 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T16:28:20.619+02:00  INFO 9228 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-18T16:28:20.642+02:00  INFO 9228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-18T16:28:20.839+02:00  INFO 9228 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31c7c281
+2023-07-18T16:28:20.841+02:00  INFO 9228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-18T16:28:20.870+02:00  WARN 9228 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-07-18T16:28:21.019+02:00  INFO 9228 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T16:28:21.494+02:00  INFO 9228 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-18T16:28:21.566+02:00  INFO 9228 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T16:28:21.832+02:00  WARN 9228 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-18T16:28:22.039+02:00  INFO 9228 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-18T16:28:22.045+02:00  INFO 9228 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 2.93 seconds (process running for 3.3)
+2023-07-18T16:28:27.256+02:00  INFO 9228 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-18T16:28:27.257+02:00  INFO 9228 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-07-18T16:28:27.257+02:00  INFO 9228 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-07-18T16:30:54.015+02:00  INFO 9228 --- [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-18T16:30:54.024+02:00  INFO 9228 --- [RMI TCP Connection(12)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-18T16:30:54.025+02:00  INFO 9228 --- [RMI TCP Connection(12)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-18T16:30:54.029+02:00  INFO 9228 --- [RMI TCP Connection(12)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T16:30:54.031+02:00  INFO 9228 --- [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-18T16:30:54.035+02:00  INFO 9228 --- [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-18T16:30:56.171+02:00  INFO 13544 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 13544 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-18T16:30:56.173+02:00  INFO 13544 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-18T16:30:56.535+02:00  INFO 13544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-18T16:30:56.569+02:00  INFO 13544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2023-07-18T16:30:56.870+02:00  INFO 13544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-18T16:30:56.876+02:00  INFO 13544 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-18T16:30:56.876+02:00  INFO 13544 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-18T16:30:56.943+02:00  INFO 13544 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-18T16:30:56.943+02:00  INFO 13544 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 744 ms
+2023-07-18T16:30:57.028+02:00  INFO 13544 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-18T16:30:57.071+02:00  INFO 13544 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-18T16:30:57.073+02:00  INFO 13544 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-18T16:30:57.175+02:00  INFO 13544 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T16:30:57.272+02:00  INFO 13544 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-18T16:30:57.291+02:00  INFO 13544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-18T16:30:57.480+02:00  INFO 13544 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31c7c281
+2023-07-18T16:30:57.482+02:00  INFO 13544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-18T16:30:57.512+02:00  WARN 13544 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-07-18T16:30:57.662+02:00  INFO 13544 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T16:30:58.153+02:00  INFO 13544 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-18T16:30:58.233+02:00  INFO 13544 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T16:30:58.487+02:00  WARN 13544 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-18T16:30:58.695+02:00  INFO 13544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-18T16:30:58.700+02:00  INFO 13544 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 2.783 seconds (process running for 3.156)
+2023-07-18T16:31:08.799+02:00  INFO 13544 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-18T16:31:08.799+02:00  INFO 13544 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-07-18T16:31:08.800+02:00  INFO 13544 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-07-18T16:31:18.083+02:00  INFO 13544 --- [http-nio-8080-exec-3] c.o.p.service.UtilisateurService         : Ajout d'un nouvel utilisateur
+2023-07-18T16:32:21.568+02:00  INFO 13544 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-18T16:32:21.577+02:00  INFO 13544 --- [RMI TCP Connection(9)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-18T16:32:21.578+02:00  INFO 13544 --- [RMI TCP Connection(9)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-18T16:32:21.582+02:00  INFO 13544 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T16:32:21.583+02:00  INFO 13544 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-18T16:32:21.587+02:00  INFO 13544 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

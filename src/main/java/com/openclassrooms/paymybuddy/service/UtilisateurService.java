@@ -1,6 +1,8 @@
 package com.openclassrooms.paymybuddy.service;
 
 import java.math.BigDecimal;
+import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,5 +69,27 @@ public class UtilisateurService {
 		utilisateur.setRib(rib);
 		return utilisateurRepository.save(utilisateur);
 	}
+	
+	/**
+	 * Verifie que l'email et le mot de passe correspondent bien à un utilisateur de la base
+	 * 
+	 * @param email
+	 * @param motDePasse
+	 * @return true si l'email et le mot de passe correspondent bien à un utilisateur
+	 */
+	public boolean loginUtilisateur(String email, String motDePasse) {
+		Iterable<Utilisateur> utilisateurs = utilisateurRepository.findByEmail(email);
+		Utilisateur premierUtilisateur = new Utilisateur();
+		for (Utilisateur utilisateur : utilisateurs) {
+		    premierUtilisateur = utilisateur;
+		    break;
+		}
+	    if (premierUtilisateur != null) {	     
+	        if ((premierUtilisateur.getEmail().equals(email))&&(premierUtilisateur.getMotDePasse().equals(motDePasse))) {
+	            return true; 
+	        }
+	    }
+	    return false;
+    }
 
 }

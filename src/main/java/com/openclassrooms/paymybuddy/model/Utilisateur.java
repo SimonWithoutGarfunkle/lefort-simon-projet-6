@@ -24,19 +24,19 @@ public class Utilisateur {
 	@Column(name = "utilisateur_id")
 	private int utilisateurId;
 	
-	@Column(name = "email")
+	@Column(name = "email", nullable = false)
 	@NotEmpty
 	private String email;
 	
-	@Column(name = "mot_de_passe")
+	@Column(name = "mot_de_passe", nullable = false)
 	@NotEmpty
 	private String motDePasse;
 	
-	@Column(name = "nom")
+	@Column(name = "nom", nullable = false)
 	@NotEmpty
 	private String nom;
 	
-	@Column(name = "prenom")
+	@Column(name = "prenom", nullable = false)
 	@NotEmpty
 	private String prenom;
 	
