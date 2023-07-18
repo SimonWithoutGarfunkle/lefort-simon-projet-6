@@ -1,6 +1,14 @@
 package com.openclassrooms.paymybuddy.controller;
 
+import javax.naming.AuthenticationException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +27,11 @@ public class UtilisateurController {
 
 	@Autowired
 	private UtilisateurService utilisateurService;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	private static Logger logger = LoggerFactory.getLogger(UtilisateurController.class);
 
 	
 	
@@ -29,28 +42,37 @@ public class UtilisateurController {
 	
 	@GetMapping("/login")
 	public String getLogin() {
+		logger.info("performing get login");
 		return "login";
 	}
 	
 	@PostMapping("/login")
-    public String authentifierUtilisateur(@RequestParam("email") String email, @RequestParam("motdepasse") String motDePasse, Model model) {
-        if (utilisateurService.loginUtilisateur(email, motDePasse)) {          
-            return "redirect:/dashboard";
-        } else {
-            model.addAttribute("error", "Identifiants invalides");
-            return "login";
-        }
+    public String processLogin(@RequestParam("email") String email, @RequestParam("motdepasse") String motDePasse, Model model) {
+		System.out.println("coucou" + email);
+		logger.info("Post de login");
+		/*
+		String email = utilisateur.getEmail();
+		String motDePasse = utilisateur.getMotDePasse();
+		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(email, motDePasse);
+	    Authentication authentication = authenticationManager.authenticate(authRequest);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		*/
+		return "redirect:/dashboard";
     }
+	
+
 	
 	@GetMapping("/register")
 	public String getRegister(Model model) {
+		logger.info("performing get register");
 		model.addAttribute("utilisateur", new Utilisateur());
 		return "register";
 	}
 	
 	@PostMapping("/register/confirmRegister")
     public String confirmRegister(@ModelAttribute("utilisateur") @Valid Utilisateur utilisateur, BindingResult bindingResult, Model model) {
-	    try {
+		logger.info("performing post register");
+		try {
 	        utilisateurService.addUtilisateur(utilisateur);
 	    } catch (IllegalArgumentException e) {
 	        bindingResult.rejectValue("email", "utilisateur.email", e.getMessage());

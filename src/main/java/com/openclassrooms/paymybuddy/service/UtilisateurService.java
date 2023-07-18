@@ -1,9 +1,6 @@
 package com.openclassrooms.paymybuddy.service;
 
 import java.math.BigDecimal;
-import java.util.Optional;
-import java.util.stream.StreamSupport;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +26,7 @@ public class UtilisateurService {
 	 * @return tous les utilisateurs enregistrés dans la base
 	 */
 	public Iterable<Utilisateur> getAllUtilisateurs() {
+		logger.info("Getting all users from DB");
 		return utilisateurRepository.findAll();
 	}
 
@@ -38,9 +36,12 @@ public class UtilisateurService {
 	 * @param email
 	 * @return true si l'email correspond deja a un compte utilisateur
 	 */
-	public Iterable<Utilisateur> getUtilisateurByEmail(String email) {
+	public Utilisateur getUtilisateurByEmail(String email) {
+		logger.info("Recherche du compte "+ email);
+		if (utilisateurRepository.findByEmail(email) == null) {
+			logger.error("Aucun compte ne correspond a "+ email);
+		}
 		return utilisateurRepository.findByEmail(email);
-
 	}
 
 	/**
@@ -52,15 +53,13 @@ public class UtilisateurService {
 	 * @return l'utilisateur enregistre
 	 */
 	public Utilisateur addUtilisateur(Utilisateur utilisateur) {
-		logger.info("Ajout d'un nouvel utilisateur");
-		
-		Iterable<Utilisateur> utilisateursByEmail = getUtilisateurByEmail(utilisateur.getEmail());
-		if (utilisateursByEmail.iterator().hasNext()) {
+		if (!(getUtilisateurByEmail(utilisateur.getEmail()) == null)) {
 			String errorMessage = "Cet e-mail est déjà enregistré";
 			logger.error(errorMessage);
 			throw new IllegalArgumentException(errorMessage);
 
 		}
+		logger.info("Creation de l'utilisateur");
 		ComptePMB comptepmb = new ComptePMB();
 		RIB rib = new RIB();
 		BigDecimal initialMontant = new BigDecimal(0);
@@ -77,7 +76,7 @@ public class UtilisateurService {
 	 * @param motDePasse
 	 * @return true si l'email et le mot de passe correspondent bien à un utilisateur
 	 */
-	public boolean loginUtilisateur(String email, String motDePasse) {
+	/*public boolean loginUtilisateur(String email, String motDePasse) {
 		Iterable<Utilisateur> utilisateurs = utilisateurRepository.findByEmail(email);
 		Utilisateur premierUtilisateur = new Utilisateur();
 		for (Utilisateur utilisateur : utilisateurs) {
@@ -90,6 +89,6 @@ public class UtilisateurService {
 	        }
 	    }
 	    return false;
-    }
+    }*/
 
 }
