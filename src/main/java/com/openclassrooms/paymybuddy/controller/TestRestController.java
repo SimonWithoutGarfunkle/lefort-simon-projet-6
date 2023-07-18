@@ -11,6 +11,11 @@ import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.service.TransactionService;
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
+/**
+ * Expose les listes d'utilisateurs et de transactions pour des tests manuels en phase de dev
+ * @author Simon
+ *
+ */
 @RestController
 public class TestRestController {
 	

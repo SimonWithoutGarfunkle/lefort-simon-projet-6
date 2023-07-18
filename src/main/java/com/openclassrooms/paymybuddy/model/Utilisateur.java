@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "utilisateur")
@@ -24,15 +25,19 @@ public class Utilisateur {
 	private int utilisateurId;
 	
 	@Column(name = "email")
+	@NotEmpty
 	private String email;
 	
 	@Column(name = "mot_de_passe")
+	@NotEmpty
 	private String motDePasse;
 	
 	@Column(name = "nom")
+	@NotEmpty
 	private String nom;
 	
 	@Column(name = "prenom")
+	@NotEmpty
 	private String prenom;
 	
 	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)

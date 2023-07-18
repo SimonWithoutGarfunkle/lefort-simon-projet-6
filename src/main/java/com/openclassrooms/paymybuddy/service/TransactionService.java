@@ -16,6 +16,11 @@ public class TransactionService {
 	
 	private static Logger logger = LoggerFactory.getLogger(TransactionService.class);
 	
+	/**
+	 * Retourne toutes les transactions enregistrées pour des tests en phase de developpement
+	 * 
+	 * @return toutes les transactions enregistrées dans la base
+	 */
 	public Iterable<Transaction> getAllTransactions() {
 		logger.info("Recuperation de toutes les transactions de la base");
 		return transactionRepository.findAll();

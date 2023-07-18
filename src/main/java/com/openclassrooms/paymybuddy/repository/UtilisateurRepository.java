@@ -7,5 +7,9 @@ import com.openclassrooms.paymybuddy.model.Utilisateur;
 
 @Repository
 public interface UtilisateurRepository extends CrudRepository<Utilisateur, Integer> {
+	
+	public Iterable<Utilisateur> findByEmail(String email);
+	
+	
 
 }
