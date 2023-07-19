@@ -1,68 +1,52 @@
 package com.openclassrooms.paymybuddy.configuration;
 
-import java.util.Collections;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Autowired
-    private UserDetailsService userDetailsService;
-	
 	private static Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 	
-
+	@SuppressWarnings("deprecation")
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		logger.info("SecurityFilterChain applied");	
+	public InMemoryUserDetailsManager userDetailsManager() {
 		
-		http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
-				.requestMatchers("/register").permitAll()
-				.requestMatchers("/register/*").permitAll()
-				.requestMatchers("/login").permitAll()
-				.requestMatchers("/dashboard").authenticated()
-				.requestMatchers("/*").permitAll())
-				.formLogin((formLogin) -> formLogin.loginPage("/login"));
-				
-
-		return http.build();
-
+		logger.info("userDetailsManager call");
+		
+		User.UserBuilder users = User.withDefaultPasswordEncoder();
+		
+		UserDetails userOne = users.username("testUserOne").password("passwordOne").roles("USER").build();
+		UserDetails userTwo = users.username("testUserTwo").password("passwordTwo").roles("ADMIN").build();
+		UserDetails userThree = users.username("user").password("aaa").roles("ADMIN").build();
+		
+		return new InMemoryUserDetailsManager(userOne, userTwo, userThree);
+		
 	}
-
+	
+	@SuppressWarnings({ "deprecation", "removal" })
 	@Bean
-	public PasswordEncoder passwordEncoder() {
-		logger.info("Encode password");
-		return new BCryptPasswordEncoder();
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		logger.info("SecurityFilterChain call");
+		http.authorizeRequests((req) -> req.requestMatchers("/dashboard").authenticated()
+											.anyRequest().permitAll())
+											.formLogin().loginPage("/login")
+											.usernameParameter("email")
+							                .passwordParameter("motdepasse");
+		
+		return http.build();
 	}
+	
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-    	logger.info("DaoAuthenticationProvider call");
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
 
-    @Bean
-    public AuthenticationManager authenticationManager() throws Exception {
-    	logger.info("AuthenticationManager call");
-        return new ProviderManager(Collections.singletonList(authenticationProvider()));
-    }
 
 }

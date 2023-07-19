@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.openclassrooms.paymybuddy.model.ComptePMB;
 import com.openclassrooms.paymybuddy.model.RIB;
+import com.openclassrooms.paymybuddy.model.RoleUtilisateur;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
@@ -66,6 +67,7 @@ public class UtilisateurService {
 		comptepmb.setMontant(initialMontant);
 		utilisateur.setComptePMB(comptepmb);
 		utilisateur.setRib(rib);
+		utilisateur.setRole(RoleUtilisateur.USER);
 		return utilisateurRepository.save(utilisateur);
 	}
 	

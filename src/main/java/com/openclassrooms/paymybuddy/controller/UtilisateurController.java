@@ -1,14 +1,8 @@
 package com.openclassrooms.paymybuddy.controller;
 
-import javax.naming.AuthenticationException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,10 +20,7 @@ import jakarta.validation.Valid;
 public class UtilisateurController {
 
 	@Autowired
-	private UtilisateurService utilisateurService;
-	
-	@Autowired
-	private AuthenticationManager authenticationManager;
+	private UtilisateurService utilisateurService;	
 	
 	private static Logger logger = LoggerFactory.getLogger(UtilisateurController.class);
 
@@ -37,8 +28,15 @@ public class UtilisateurController {
 	
 	@GetMapping("/dashboard")
 	public String getDashboard() {
+		logger.info("performing get dashboard");
 		return "dashboard";
 	}
+	
+    @GetMapping("/403")
+    public String error403() {
+        return "/error/403";
+    }
+	
 	
 	@GetMapping("/login")
 	public String getLogin() {
@@ -46,19 +44,21 @@ public class UtilisateurController {
 		return "login";
 	}
 	
+	/*
 	@PostMapping("/login")
     public String processLogin(@RequestParam("email") String email, @RequestParam("motdepasse") String motDePasse, Model model) {
 		System.out.println("coucou" + email);
 		logger.info("Post de login");
-		/*
+		
 		String email = utilisateur.getEmail();
 		String motDePasse = utilisateur.getMotDePasse();
 		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(email, motDePasse);
 	    Authentication authentication = authenticationManager.authenticate(authRequest);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		*/
+		
 		return "redirect:/dashboard";
-    }
+    }*/
+
 	
 
 	
