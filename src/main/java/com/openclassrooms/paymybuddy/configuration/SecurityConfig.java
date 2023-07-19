@@ -33,15 +33,18 @@ public class SecurityConfig {
 		
 	}
 	
-	@SuppressWarnings({ "deprecation", "removal" })
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		logger.info("SecurityFilterChain call");
-		http.authorizeRequests((req) -> req.requestMatchers("/dashboard").authenticated()
+		http.authorizeHttpRequests((req) -> req.requestMatchers("/dashboard").authenticated()
 											.anyRequest().permitAll())
-											.formLogin().loginPage("/login")
-											.usernameParameter("email")
-							                .passwordParameter("motdepasse");
+							                .formLogin(form -> form
+							                    .loginPage("/login")
+							                    .usernameParameter("email")
+								                .passwordParameter("motdepasse")
+							                    .defaultSuccessUrl("/dashboard")
+							                    .failureUrl("/login?error=true")
+							                );
 		
 		return http.build();
 	}

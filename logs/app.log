@@ -1946,3 +1946,80 @@ java.lang.IllegalStateException: Neither BindingResult nor plain target object f
 2023-07-19T18:54:17.651+02:00  INFO 964 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-07-19T18:54:17.652+02:00  INFO 964 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-07-19T18:54:17.656+02:00  INFO 964 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-19T19:50:52.224+02:00  INFO 16268 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 16268 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-19T19:50:52.225+02:00  INFO 16268 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-19T19:50:52.611+02:00  INFO 16268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-19T19:50:52.646+02:00  INFO 16268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2023-07-19T19:50:53.008+02:00  INFO 16268 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-19T19:50:53.014+02:00  INFO 16268 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-19T19:50:53.015+02:00  INFO 16268 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-19T19:50:53.089+02:00  INFO 16268 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-19T19:50:53.089+02:00  INFO 16268 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 833 ms
+2023-07-19T19:50:53.179+02:00  INFO 16268 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-19T19:50:53.210+02:00  INFO 16268 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-19T19:50:53.212+02:00  INFO 16268 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-19T19:50:53.294+02:00  INFO 16268 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-19T19:50:53.373+02:00  INFO 16268 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-19T19:50:53.383+02:00  INFO 16268 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-19T19:50:53.564+02:00  INFO 16268 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d504137
+2023-07-19T19:50:53.565+02:00  INFO 16268 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-19T19:50:53.745+02:00  INFO 16268 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-19T19:50:54.209+02:00  INFO 16268 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-19T19:50:54.288+02:00  INFO 16268 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-19T19:50:54.530+02:00  WARN 16268 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-19T19:50:54.540+02:00  INFO 16268 --- [main] c.o.p.configuration.SecurityConfig       : userDetailsManager call
+2023-07-19T19:50:54.541+02:00  WARN 16268 --- [main] o.s.security.core.userdetails.User       : User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2023-07-19T19:50:54.777+02:00  INFO 16268 --- [main] c.o.p.configuration.SecurityConfig       : SecurityFilterChain call
+2023-07-19T19:50:54.884+02:00  INFO 16268 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2723b0d0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7137cd14, org.springframework.security.web.context.SecurityContextHolderFilter@2ae07dbd, org.springframework.security.web.header.HeaderWriterFilter@70ca8e72, org.springframework.security.web.csrf.CsrfFilter@27caa186, org.springframework.security.web.authentication.logout.LogoutFilter@3f8a44a4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@463746eb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@47f8374, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13f10967, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47d0195b, org.springframework.security.web.access.ExceptionTranslationFilter@5032b2e, org.springframework.security.web.access.intercept.AuthorizationFilter@372e972d]
+2023-07-19T19:50:55.013+02:00  INFO 16268 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-19T19:50:55.018+02:00  INFO 16268 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 3.06 seconds (process running for 3.302)
+2023-07-19T19:50:59.843+02:00  INFO 16268 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-19T19:50:59.844+02:00  INFO 16268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-07-19T19:50:59.845+02:00  INFO 16268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-07-19T19:50:59.876+02:00  INFO 16268 --- [http-nio-8080-exec-1] c.o.p.controller.UtilisateurController   : performing get register
+2023-07-19T19:51:04.771+02:00  INFO 16268 --- [http-nio-8080-exec-3] c.o.p.controller.UtilisateurController   : performing post register
+2023-07-19T19:51:04.772+02:00  INFO 16268 --- [http-nio-8080-exec-3] c.o.p.service.UtilisateurService         : Recherche du compte simonlefort@hotmail.fr
+2023-07-19T19:51:04.840+02:00 ERROR 16268 --- [http-nio-8080-exec-3] c.o.p.service.UtilisateurService         : Aucun compte ne correspond a simonlefort@hotmail.fr
+2023-07-19T19:51:04.842+02:00  INFO 16268 --- [http-nio-8080-exec-3] c.o.p.service.UtilisateurService         : Creation de l'utilisateur
+2023-07-19T19:51:06.991+02:00  INFO 16268 --- [http-nio-8080-exec-6] c.o.p.controller.UtilisateurController   : performing get login
+2023-07-19T19:51:09.243+02:00  INFO 16268 --- [http-nio-8080-exec-9] c.o.p.controller.UtilisateurController   : performing get login
+2023-07-19T19:51:47.181+02:00  INFO 16268 --- [http-nio-8080-exec-2] c.o.p.controller.UtilisateurController   : performing get dashboard
+2023-07-19T19:52:30.343+02:00  INFO 16268 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-19T19:52:30.345+02:00  INFO 16268 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-19T19:52:30.350+02:00  INFO 16268 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-19T19:52:52.887+02:00  INFO 17264 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Starting PaymybuddyApplication using Java 17.0.6 with PID 17264 (C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6\target\classes started by Simon in C:\Users\simon\eclipse-workspace\PayMyBuddy\lefort-simon-projet-6)
+2023-07-19T19:52:52.889+02:00  INFO 17264 --- [main] c.o.paymybuddy.PaymybuddyApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-07-19T19:52:53.333+02:00  INFO 17264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-19T19:52:53.373+02:00  INFO 17264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 2 JPA repository interfaces.
+2023-07-19T19:52:53.769+02:00  INFO 17264 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-19T19:52:53.776+02:00  INFO 17264 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-19T19:52:53.777+02:00  INFO 17264 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-07-19T19:52:53.865+02:00  INFO 17264 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-19T19:52:53.865+02:00  INFO 17264 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 944 ms
+2023-07-19T19:52:53.988+02:00  INFO 17264 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-19T19:52:54.030+02:00  INFO 17264 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-19T19:52:54.032+02:00  INFO 17264 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-19T19:52:54.123+02:00  INFO 17264 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-19T19:52:54.215+02:00  INFO 17264 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-19T19:52:54.227+02:00  INFO 17264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-19T19:52:54.431+02:00  INFO 17264 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e4ca109
+2023-07-19T19:52:54.433+02:00  INFO 17264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-19T19:52:54.637+02:00  INFO 17264 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-19T19:52:55.109+02:00  INFO 17264 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-19T19:52:55.187+02:00  INFO 17264 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-19T19:52:55.427+02:00  WARN 17264 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-19T19:52:55.436+02:00  INFO 17264 --- [main] c.o.p.configuration.SecurityConfig       : userDetailsManager call
+2023-07-19T19:52:55.437+02:00  WARN 17264 --- [main] o.s.security.core.userdetails.User       : User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2023-07-19T19:52:55.675+02:00  INFO 17264 --- [main] c.o.p.configuration.SecurityConfig       : SecurityFilterChain call
+2023-07-19T19:52:55.775+02:00  INFO 17264 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@428e9be2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3e729d46, org.springframework.security.web.context.SecurityContextHolderFilter@34e7cde3, org.springframework.security.web.header.HeaderWriterFilter@5032b2e, org.springframework.security.web.csrf.CsrfFilter@3df4cd96, org.springframework.security.web.authentication.logout.LogoutFilter@1cdb280b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@28ffa527, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ae07dbd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@b8c6406, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2723b0d0, org.springframework.security.web.access.ExceptionTranslationFilter@729de0e1, org.springframework.security.web.access.intercept.AuthorizationFilter@53b83897]
+2023-07-19T19:52:55.897+02:00  INFO 17264 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-19T19:52:55.902+02:00  INFO 17264 --- [main] c.o.paymybuddy.PaymybuddyApplication     : Started PaymybuddyApplication in 3.29 seconds (process running for 3.584)
+2023-07-19T19:52:57.629+02:00  INFO 17264 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-19T19:52:57.629+02:00  INFO 17264 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-07-19T19:52:57.630+02:00  INFO 17264 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-07-19T19:52:57.661+02:00  INFO 17264 --- [http-nio-8080-exec-1] c.o.p.controller.UtilisateurController   : performing get register
+2023-07-19T19:53:00.592+02:00  INFO 17264 --- [http-nio-8080-exec-6] c.o.p.controller.UtilisateurController   : performing get login
+2023-07-19T19:53:04.368+02:00  INFO 17264 --- [http-nio-8080-exec-3] c.o.p.controller.UtilisateurController   : performing get dashboard
+2023-07-19T19:53:15.120+02:00  INFO 17264 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-19T19:53:15.122+02:00  INFO 17264 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-19T19:53:15.126+02:00  INFO 17264 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
