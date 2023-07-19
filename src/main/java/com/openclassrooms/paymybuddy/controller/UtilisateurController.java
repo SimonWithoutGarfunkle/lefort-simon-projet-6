@@ -44,22 +44,6 @@ public class UtilisateurController {
 		return "login";
 	}
 	
-	/*
-	@PostMapping("/login")
-    public String processLogin(@RequestParam("email") String email, @RequestParam("motdepasse") String motDePasse, Model model) {
-		System.out.println("coucou" + email);
-		logger.info("Post de login");
-		
-		String email = utilisateur.getEmail();
-		String motDePasse = utilisateur.getMotDePasse();
-		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(email, motDePasse);
-	    Authentication authentication = authenticationManager.authenticate(authRequest);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		return "redirect:/dashboard";
-    }*/
-
-	
 
 	
 	@GetMapping("/register")
