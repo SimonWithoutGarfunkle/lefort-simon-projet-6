@@ -1,16 +1,12 @@
 package com.openclassrooms.paymybuddy.model;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +19,7 @@ import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur implements UserDetails {
+public class Utilisateur {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +52,19 @@ public class Utilisateur implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "comptePMB_id")
     private ComptePMB comptePMB;
+    
+    @Column(name = "role")
+	@Enumerated(EnumType.STRING)
+    private RoleUtilisateur role;
 	
+
+	public RoleUtilisateur getRole() {
+		return role;
+	}
+
+	public void setRole(RoleUtilisateur role) {
+		this.role = role;
+	}
 
 	public RIB getRib() {
 		return rib;
@@ -121,47 +129,5 @@ public class Utilisateur implements UserDetails {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-	}
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return motDePasse;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return email;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 
 }

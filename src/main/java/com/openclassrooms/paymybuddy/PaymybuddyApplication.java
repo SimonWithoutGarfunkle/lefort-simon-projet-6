@@ -15,7 +15,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.service.TransactionService;
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
@@ -23,38 +25,45 @@ import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication
 public class PaymybuddyApplication implements CommandLineRunner {
-	
+
 	@Autowired
-    private DataSource dataSource;
-	
+	private DataSource dataSource;
+
 	@Autowired
 	private TransactionService transactionService;
-	
+
 	@Autowired
 	private UtilisateurService utilisateurService;
 
-    @Autowired
-    private ApplicationContext applicationContext;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
+	@Autowired
+	private ApplicationContext applicationContext;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PaymybuddyApplication.class, args);
 	}
-	
+
 	@PostConstruct
 	public void initializeDatabase() throws SQLException, IOException {
-	    Resource resource = applicationContext.getResource("classpath:AlimentationDB.sql");
-	    try (InputStream inputStream = resource.getInputStream();
-	         Connection connection = dataSource.getConnection()) {
-	        ScriptUtils.executeSqlScript(connection, new InputStreamResource(inputStream));
-	    }
-	    System.out.println("Les requêtes SQL ont été exécutées avec succès !");
-	}
-	
-	@Override
-	public void run(String... args) throws Exception {		
+		Resource resource = applicationContext.getResource("classpath:AlimentationDB.sql");
+		try (InputStream inputStream = resource.getInputStream(); Connection connection = dataSource.getConnection()) {
+			ScriptUtils.executeSqlScript(connection, new InputStreamResource(inputStream));
+		}
+		System.out.println("Les requêtes SQL ont été exécutées avec succès !");
 		
+		Iterable<Utilisateur> utilisateurs = utilisateurService.getAllUtilisateurs();
+		
+		for (Utilisateur utilisateur : utilisateurs) {
+			utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
+			//en attente du service de mise a jour d'utilisateur
+		}
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+
+	}
 
 }

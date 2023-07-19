@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.paymybuddy.model.ComptePMB;
 import com.openclassrooms.paymybuddy.model.RIB;
+import com.openclassrooms.paymybuddy.model.RoleUtilisateur;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
@@ -16,6 +18,9 @@ public class UtilisateurService {
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	private static Logger logger = LoggerFactory.getLogger(UtilisateurService.class);
 
@@ -64,8 +69,10 @@ public class UtilisateurService {
 		RIB rib = new RIB();
 		BigDecimal initialMontant = new BigDecimal(0);
 		comptepmb.setMontant(initialMontant);
+		utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
 		utilisateur.setComptePMB(comptepmb);
 		utilisateur.setRib(rib);
+		utilisateur.setRole(RoleUtilisateur.USER);
 		return utilisateurRepository.save(utilisateur);
 	}
 	

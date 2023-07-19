@@ -1,33 +1,29 @@
 package com.openclassrooms.paymybuddy.service;
 
-import java.util.Collections;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
+import com.openclassrooms.paymybuddy.model.MyUserDetails;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
+import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
-@Service
-public class UserDetailsServiceImpl implements UserDetailsService  {
+public class UserDetailsServiceImpl implements UserDetailsService {
 	
-    @Autowired
-    private UtilisateurService utilisateurService;
-
+	@Autowired
+    private UtilisateurRepository utilisateurRepository;
+     
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Utilisateur utilisateur = utilisateurService.getUtilisateurByEmail(email);
-        UserDetails userDetails = User.builder()
-                .username(utilisateur.getEmail())
-                .password(utilisateur.getMotDePasse())
-                .authorities(Collections.emptyList())
-                .build();
-        
-        return userDetails;
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        Utilisateur user = utilisateurRepository.findByEmail(username);
+         
+        if (user == null) {
+            throw new UsernameNotFoundException("Could not find user");
+        }
+         
+        return new MyUserDetails(user);
     }
-
 
 }
