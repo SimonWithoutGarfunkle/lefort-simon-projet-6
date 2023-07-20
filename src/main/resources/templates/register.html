@@ -10,15 +10,7 @@ xmlns:th="http://www.thymeleaf.org">
 </head>
 
 <body>
-  <header>
-    <nav class="menu">
-        <ul>
-          <li><a href="/login">Login</a></li>
-          <li><a href="transactions.html">Transfer</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-  </header>
+<div th:insert="~{fragments/header :: header}"></div>
 
   <div class="login-container">
     <div class="login-form">

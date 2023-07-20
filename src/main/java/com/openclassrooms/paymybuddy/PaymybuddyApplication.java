@@ -45,6 +45,13 @@ public class PaymybuddyApplication implements CommandLineRunner {
 		SpringApplication.run(PaymybuddyApplication.class, args);
 	}
 
+	
+	/**
+	 * Injection du fichier SQL pour pré rempli la base de donnees avec quelques valeurs a des fins de tests
+	 * 
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	@PostConstruct
 	public void initializeDatabase() throws SQLException, IOException {
 		Resource resource = applicationContext.getResource("classpath:AlimentationDB.sql");

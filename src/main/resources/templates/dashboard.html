@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="UTF-8">
@@ -9,20 +9,12 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<header>
-		<nav class="menu">
-			<ul>
-				<li><a href="/login">Login</a></li>
-				<li><a href="transactions.html">Transfer</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
+<div th:insert="~{fragments/header :: header}"></div>
 
 	<div class="login-container">
-		<div class="login-form">
+		<div class="login-form" data-th-object="${ utilisateur }">
 			<h2>Dashboard</h2>
-
+			<p th:text="'Bonjour ' +${#authentication.principal.utilisateur.prenom}">Hello a vous</p>
 		</div>
 	</div>
 

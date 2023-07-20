@@ -14,7 +14,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
     private UtilisateurRepository utilisateurRepository;
      
-    @Override
+    /**
+     * Definie l'adresse email de l'utilisateur comme identifiant de connexion
+     * 
+     */
+	@Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         Utilisateur user = utilisateurRepository.findByEmail(username);

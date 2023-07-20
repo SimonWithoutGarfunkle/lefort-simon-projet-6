@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/Styles/transactions.css}">
+  <title>Transfert</title>
+</head>
+
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+  <div class="transfer-container">
+    <div class="transfer-form">
+      <h2>Transfer</h2>
+      <form>
+        <div class="form-group">
+          <label for="from">From:</label>
+          <select id="from" name="from">
+            <option value="account1">Account 1</option>
+            <option value="account2">Account 2</option>
+            <option value="account3">Account 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="to">To:</label>
+          <select id="to" name="to">
+            <option value="account1">Account 1</option>
+            <option value="account2">Account 2</option>
+            <option value="account3">Account 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount:</label>
+          <input type="text" id="amount" name="amount" placeholder="Enter amount">
+        </div>
+        <button type="submit">Transfer</button>
+      </form>
+    </div>
+
+    <div class="transaction-history">
+      <h2>Transaction History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Contact</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John Doe</td>
+            <td>Payment for services</td>
+            <td>$50.00</td>
+          </tr>
+          <tr>
+            <td>Jane Smith</td>
+            <td>Product purchase</td>
+            <td>$25.00</td>
+          </tr>
+          <tr>
+            <td>David Johnson</td>
+            <td>Monthly subscription</td>
+            <td>$10.00</td>
+          </tr>
+          <tr>
+            <td>Sarah Adams</td>
+            <td>Loan repayment</td>
+            <td>$75.00</td>
+          </tr>
+          <tr>
+            <td>Mark Wilson</td>
+            <td>Gift transfer</td>
+            <td>$20.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <button class="prev-page">Previous</button>
+        <button class="next-page">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <!-- Votre contenu de pied de page ici -->
+  </footer>
+</body>
+
+</html>

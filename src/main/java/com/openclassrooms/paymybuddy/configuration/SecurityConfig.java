@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 import com.openclassrooms.paymybuddy.service.UserDetailsServiceImpl;
 
 @Configuration
@@ -23,6 +22,9 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		logger.info("SecurityFilterChain call");
+		
+
+		
 		http.authorizeHttpRequests((req) -> req.requestMatchers("/dashboard").authenticated()
 											.anyRequest().permitAll())
 							                .formLogin(form -> form
@@ -31,8 +33,7 @@ public class SecurityConfig {
 								                .passwordParameter("motdepasse")
 							                    .defaultSuccessUrl("/dashboard")
 							                    .failureUrl("/login?error=true")
-							                );
-		
+							                );	
 		return http.build();
 	}
 	

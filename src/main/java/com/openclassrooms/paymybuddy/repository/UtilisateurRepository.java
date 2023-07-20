@@ -10,8 +10,5 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Integ
 	
 	public Utilisateur findByEmail(String email);
 	
-	
-	
-	
 
 }

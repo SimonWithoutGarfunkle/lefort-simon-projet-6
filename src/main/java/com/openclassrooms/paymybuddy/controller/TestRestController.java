@@ -25,11 +25,22 @@ public class TestRestController {
 	@Autowired
 	private UtilisateurService utilisateurService;
 	
+	/**
+	 * Expose la liste de tous les utilisateurs en base
+	 * 
+	 * @returncode http 200 et la liste de tous les utilisateurs en base
+	 */
 	@GetMapping(value = "/utilisateurs", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Iterable<Utilisateur>> getAllUtilisateurs() {
 		Iterable<Utilisateur> utilisateurs = utilisateurService.getAllUtilisateurs();
 		return ResponseEntity.ok(utilisateurs);
 	}
+	
+	/**
+	 * Expose la liste de toutes les transactions en base
+	 * 
+	 * @return code http 200 et la liste de toutes les transactions en base
+	 */
 	
 	@GetMapping(value = "/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Iterable<Transaction>> getAllTransactions() {
