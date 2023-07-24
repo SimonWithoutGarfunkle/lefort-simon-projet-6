@@ -16,9 +16,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "utilisateur")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Utilisateur {
 	
 	@Id

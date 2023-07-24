@@ -12,7 +12,7 @@
 <div th:insert="~{fragments/header :: header}"></div>
 
 	<div class="login-container">
-		<div class="login-form" data-th-object="${ utilisateur }">
+		<div class="login-form" >
 			<h2>Dashboard</h2>
 			<p th:text="'Bonjour ' +${#authentication.principal.utilisateur.prenom}">Hello a vous</p>
 		</div>

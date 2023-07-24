@@ -32,7 +32,7 @@ public class SecurityConfig {
 							                    .usernameParameter("email")
 								                .passwordParameter("motdepasse")
 							                    .defaultSuccessUrl("/dashboard")
-							                    .failureUrl("/login?error=true")
+							                    .failureUrl("/login?error")
 							                );	
 		return http.build();
 	}
