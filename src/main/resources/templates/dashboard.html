@@ -14,7 +14,7 @@
 	<div class="login-container">
 		<div class="login-form" >
 			<h2>Dashboard</h2>
-			<p th:text="'Bonjour ' +${#authentication.principal.utilisateur.prenom}">Hello a vous</p>
+			<p th:text="'Bonjour ' +${#authentication.principal.getPrenom()}">Hello a vous</p>
 		</div>
 	</div>
 

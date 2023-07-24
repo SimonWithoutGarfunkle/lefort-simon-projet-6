@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +17,7 @@ import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
 @Service
-public class UtilisateurService {
+public class UtilisateurService implements UserDetailsService {
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
@@ -75,6 +78,22 @@ public class UtilisateurService {
 		utilisateur.setRole(RoleUtilisateur.USER);
 		return utilisateurRepository.save(utilisateur);
 	}
+	
+    /**
+     * Definie l'adresse email de l'utilisateur comme identifiant de connexion
+     * 
+     */
+	@Override
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        Utilisateur user = utilisateurRepository.findByEmail(username);
+         
+        if (user == null) {
+            throw new UsernameNotFoundException("Could not find user");
+        }
+         
+        return user;
+    }
 	
 
 }
