@@ -62,9 +62,10 @@ public class PaymybuddyApplication implements CommandLineRunner {
 		
 		Iterable<Utilisateur> utilisateurs = utilisateurService.getAllUtilisateurs();
 		
+		//Cryptage en base des mots de base en clair dans le SQL
 		for (Utilisateur utilisateur : utilisateurs) {
 			utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
-			//en attente du service de mise a jour d'utilisateur
+			utilisateurService.updateUtilisateur(utilisateur);
 		}
 	}
 

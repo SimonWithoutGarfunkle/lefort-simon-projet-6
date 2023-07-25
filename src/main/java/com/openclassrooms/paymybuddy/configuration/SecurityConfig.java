@@ -32,7 +32,15 @@ public class SecurityConfig {
 								                .passwordParameter("motdepasse")
 							                    .defaultSuccessUrl("/dashboard")
 							                    .failureUrl("/login?error")
-							                );	
+							                )
+							                .logout((logout) ->
+							 					logout.logoutUrl("/logout")
+							 						.deleteCookies("remove")
+							 						.logoutSuccessUrl("/login")
+							 						.invalidateHttpSession(true)
+							 						.clearAuthentication(true)
+							 						.permitAll());
+		
 		return http.build();
 	}
 	

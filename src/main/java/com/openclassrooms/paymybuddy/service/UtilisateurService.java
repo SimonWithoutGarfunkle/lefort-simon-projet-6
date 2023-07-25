@@ -51,6 +51,16 @@ public class UtilisateurService implements UserDetailsService {
 		}
 		return utilisateurRepository.findByEmail(email);
 	}
+	
+	/**
+	 * Met à jour dynamiquement l'utilisateur en base
+	 * @param utilisateur
+	 * @return l'utilisateur mis a jour
+	 */
+	public Utilisateur updateUtilisateur(Utilisateur utilisateur) {
+		utilisateurRepository.save(utilisateur);
+		return utilisateur;
+	}
 
 	/**
 	 * Créer un compte pmb et un RIB associés a ce nouvel utilisateur et persiste
@@ -94,6 +104,8 @@ public class UtilisateurService implements UserDetailsService {
          
         return user;
     }
+	
+
 	
 
 }

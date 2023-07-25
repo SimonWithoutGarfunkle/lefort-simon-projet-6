@@ -1,5 +1,7 @@
 package com.openclassrooms.paymybuddy.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,8 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
+@DynamicUpdate
 @Table(name = "contact")
 public class Contact {
 	
@@ -18,6 +22,7 @@ public class Contact {
 	@Column(name = "contact_id")
 	private int contactId;
 	
+	@NotEmpty
 	@Column(name = "email")
 	private String email;
 	

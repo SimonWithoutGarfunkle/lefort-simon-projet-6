@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,11 +28,14 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
+@DynamicUpdate
 @Table(name = "utilisateur")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Utilisateur implements UserDetails {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "utilisateur_id")
