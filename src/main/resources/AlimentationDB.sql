@@ -59,4 +59,8 @@ VALUES
     ('coucou2', 'utilisateur2@example.com', 'Nom2', 'Prénom2', 'surnom2', 6),
     ('coucou3', 'utilisateur3@example.com', 'Nom3', 'Prénom3', 'surnom3', 6),
     ('coucou4', 'utilisateur4@example.com', 'Nom4', 'Prénom4', 'surnom4', 6),
-    ('coucou5', 'utilisateur5@example.com', 'Nom5', 'Prénom5', 'surnom5', 6);
+    ('coucou5', 'utilisateur5@example.com', 'Nom5', 'Prénom5', 'surnom5', 6),
+    ('coucou6', 'utilisateur6@example.com', 'Nom1', 'Prénom1', 'surnom1', 6),
+    ('coucou7', 'utilisateur7@example.com', 'Nom2', 'Prénom2', 'surnom2', 6),
+    ('coucou8', 'utilisateur8@example.com', 'Nom3', 'Prénom3', 'surnom3', 2),
+    ('coucou9', 'utilisateur9@example.com', 'Nom4', 'Prénom4', 'surnom4', 1);

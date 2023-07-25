@@ -67,3 +67,18 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+  .contacts-pagination {
+    color: #4CAF50;
+  }
+
+  .contacts-pagination a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #4CAF50;
+    
+  }
+
+  .contacts-pagination a:hover {
+    text-decoration: underline;
+  }
