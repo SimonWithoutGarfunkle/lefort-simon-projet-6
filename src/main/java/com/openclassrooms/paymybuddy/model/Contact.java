@@ -62,7 +62,7 @@ public class Contact {
 	}
 
 	public int getUtilisateurId() {
-		return contactId;
+		return utilisateur.getUtilisateurId();
 	}
 
 	public void setUtilisateurId(int utilisateurId) {

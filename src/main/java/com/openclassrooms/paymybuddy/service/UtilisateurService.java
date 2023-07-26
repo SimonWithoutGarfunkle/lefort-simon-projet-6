@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.openclassrooms.paymybuddy.model.ComptePMB;
 import com.openclassrooms.paymybuddy.model.RIB;
@@ -16,6 +17,8 @@ import com.openclassrooms.paymybuddy.model.RoleUtilisateur;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
+
+@Transactional
 @Service
 public class UtilisateurService implements UserDetailsService {
 
@@ -34,7 +37,7 @@ public class UtilisateurService implements UserDetailsService {
 	 * @return tous les utilisateurs enregistrés dans la base
 	 */
 	public Iterable<Utilisateur> getAllUtilisateurs() {
-		logger.info("Getting all users from DB");
+		logger.info("Recuperation de tous les utilisateurs de la base");
 		return utilisateurRepository.findAll();
 	}
 
@@ -99,7 +102,7 @@ public class UtilisateurService implements UserDetailsService {
         Utilisateur user = utilisateurRepository.findByEmail(username);
          
         if (user == null) {
-            throw new UsernameNotFoundException("Could not find user");
+            throw new UsernameNotFoundException("Aucun utilisateur ne correspond a cet identifiant");
         }
          
         return user;
