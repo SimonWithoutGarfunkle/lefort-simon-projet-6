@@ -19,7 +19,9 @@ import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.ContactRepository;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
-@Transactional
+import jakarta.persistence.EntityManager;
+
+
 @Service
 public class ContactService {
 	
@@ -28,6 +30,9 @@ public class ContactService {
 		
 	@Autowired
 	private ContactRepository contactRepository;
+	
+	@Autowired
+	private EntityManager entityManager;
 			
 	private static Logger logger = LoggerFactory.getLogger(ContactService.class);
 	
@@ -73,12 +78,14 @@ public class ContactService {
 	}
 	
 	/**
+	 * Nous utilisons actuellement la methode save pour creer et mettre a jour les contacts.
+	 * 
 	 * Ajoute un contact à la liste de contact de l'utilisateur. Seuls les utilisateurs peuvent etre des contacts.
 	 * 
 	 * @param utilisateur qui ajoute le contact
 	 * @param contact a ajouter
 	 * @return le contact ajouté
-	 */
+	 
 	public Contact addContact(Utilisateur utilisateur, Contact contact) {
 		logger.info("Ajout du contact a l'utilisateur");
 		if (utilisateurRepository.findByEmail(contact.getEmail())!= null) {
@@ -93,29 +100,36 @@ public class ContactService {
 				
 		return contact;
 		
-	}
+	}*/
 	
 	
 	/**
-	 * Sauvegarde le contact
+	 * Sauvegarde le contact en vérifiant que l'email correspond bien a un utilisateur
 	 * 
 	 * @param utilisateur
 	 * @param contact
-	 * @return le contaact a sauvegarder
+	 * @return le contact a sauvegarder
 	 */
 	public Contact saveContact(Contact contact) {
 	    logger.info("Appel de saveContact");
+	    if (utilisateurRepository.findByEmail(contact.getEmail()) == null) {
+	    	logger.error("l'email ne correspond a aucun utilisateur");
+	    	return null;
+	    	
+	    }
 	    return contactRepository.save(contact);
 	}
 	
 	
 	/**
+	 * Nous utilisons actuellement la methode save pour creer et mettre a jour les contacts.
+	 * 
 	 * Met a jour dynamiquement le contact
 	 * 
 	 * @param utilisateur
 	 * @param contact
 	 * @return le contact a jour
-	 */
+	 
 	public Contact updateContact(Utilisateur utilisateur, Contact contact) {
 		logger.info("Mise a jour du contact");
 		if (matchUtilisateurContact(utilisateur, contact)) {
@@ -123,7 +137,7 @@ public class ContactService {
 		}
 
 		return contact;
-	}
+	}*/
 	
 	/**
 	 * Supprime le contact de la liste de contact de l'utilisateur
@@ -132,16 +146,29 @@ public class ContactService {
 	 * @param contact a supprimer
 	 * @return le contact supprimé
 	 */
-	public Contact deleteContact(Utilisateur utilisateur, Contact contact) {
+	@Transactional
+	public int deleteContact(Utilisateur utilisateur, Contact contact) {
 		logger.info("Suppression du contact");
 		if (matchUtilisateurContact(utilisateur, contact)) {		
+			logger.info("Nombre de contacts restants : "+utilisateur.getContacts().size());
 			utilisateur.getContacts().remove(contact);
+			entityManager.clear();
+			logger.info("Nombre de contacts restants : "+utilisateur.getContacts().size());
 			utilisateurRepository.save(utilisateur);
+			logger.info("utilisateur sauvegarde");
 			
 		} else {
 			logger.error("suppression du contact impossible");
 		}
-		return contact;
+		int contactsNumber = utilisateur.getContacts().size();
+		logger.info("Nombre de contacts restants : "+contactsNumber);
+		return contactsNumber;
+	}
+	
+	
+	public void delete(Contact contact) {
+		logger.info("Appel de delete");
+		contactRepository.delete(contact);
 	}
 
 	/**

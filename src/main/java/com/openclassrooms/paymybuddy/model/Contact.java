@@ -20,7 +20,7 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "contact_id")
-	private int contactId;
+	private Integer contactId;
 	
 	@NotEmpty
 	@Column(name = "email")
@@ -45,11 +45,11 @@ public class Contact {
 	@JoinColumn(name = "utilisateur_id")
 	private Utilisateur utilisateur;
 
-	public int getContactId() {
+	public Integer getContactId() {
 		return contactId;
 	}
 
-	public void setContactId(int contactId) {
+	public void setContactId(Integer contactId) {
 		this.contactId = contactId;
 	}
 
@@ -65,7 +65,7 @@ public class Contact {
 		return utilisateur.getUtilisateurId();
 	}
 
-	public void setUtilisateurId(int utilisateurId) {
+	public void setUtilisateurId(Integer utilisateurId) {
 		this.contactId = utilisateurId;
 	}
 

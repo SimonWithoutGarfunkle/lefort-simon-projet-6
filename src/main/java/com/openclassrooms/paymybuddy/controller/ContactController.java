@@ -9,8 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,78 +31,151 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/contacts")
 public class ContactController {
-	
+
 	@Autowired
 	private ContactService contactService;
-	
+
 	@Autowired
 	private ContactRepository contactRepository;
-	
+
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
-	
+
 	private static Logger logger = LoggerFactory.getLogger(ContactController.class);
-	
+
 	@GetMapping
 	public String getContacts(Model model) {
 		logger.info("performing get contact");
 		return findPaginated(1, "prenom", "asc", model);
 	}
-	
+
 	@GetMapping("/page/{pageNo}")
-	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
+	public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir, Model model) {
 		int pageSize = 5;
 		Page<Contact> page = contactService.findPaginated(pageNo, pageSize, sortField, sortDir);
 		List<Contact> listContacts = page.getContent();
-		logger.info("la liste contacts contient : "+ listContacts.size());
-		
+
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
-		
+
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-		
+
 		model.addAttribute("listContacts", listContacts);
 		return "contacts";
-		
-		
-		
+
 	}
-	
+
 	@GetMapping("/contactForm")
 	public String getContactForm(Model model) {
 		logger.info("Appel de contactForm");
-		
-	    Contact newContact = new Contact();
-	    model.addAttribute("contact", newContact);
-		
+
+		Contact newContact = new Contact();
+		model.addAttribute("contact", newContact);
+
 		return "contactForm";
 	}
-	
+
 	@GetMapping("/contactForm/{contactId}")
-	public String getUpdateContactForm(@PathVariable int contactId, Model model) {
-	    logger.info("Appel de getUpdateContactForm");
+	public String getUpdateContactForm(@PathVariable Integer contactId, Model model) {
+		logger.info("Appel de getUpdateContactForm");
 
-	    Contact existingContact = contactRepository.findById(contactId);
+		Contact existingContact = contactRepository.getContactById(contactId);
 
-	    model.addAttribute("contact", existingContact);
+		model.addAttribute("contact", existingContact);
 
-	    return "contactForm";
+		return "contactForm";
 	}
-	
+
 	@PostMapping("/contactForm/save")
-	public String postContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult bindingResult, Model model) {
+	public String postContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult bindingResult,
+			Model model) {
 		logger.info("Post save contactForm");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
-        
-        contact.setUtilisateur(utilisateur);
-        contactService.saveContact(contact);
-		
+		Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
+
+		contact.setUtilisateur(utilisateur);
+
+		if (utilisateurRepository.findByEmail(contact.getEmail()) == null) {
+			logger.error("l'email ne correspond a aucun utilisateur");
+			model.addAttribute("errorMessage", "l'email ne correspond a aucun utilisateur");
+			return "contactForm";
+
+		}
+
+		contactService.saveContact(contact);
+
 		return "redirect:/contacts";
 	}
+
+	@GetMapping("/{contactId}/delete")
+	public String getDeleteForm(@PathVariable Integer contactId, Model model) {
+		logger.info("Appel de deleteForm");
+		Contact contactToDelete = contactRepository.getContactById(contactId);
+
+		model.addAttribute("contact", contactToDelete);
+		return "deleteContactForm";
+	}
+
+	/*
+	 * @Transactional
+	 * 
+	 * @DeleteMapping("/{contactId}/delete/confirmDelete") public String
+	 * deleteContact(@PathVariable int contactId, Model model) {
+	 * logger.info("Appel de deleteContact");
+	 * 
+	 * Authentication authentication =
+	 * SecurityContextHolder.getContext().getAuthentication(); Utilisateur
+	 * utilisateur = (Utilisateur) authentication.getPrincipal();
+	 * 
+	 * Contact contactToDelete = contactRepository.findById(contactId);
+	 * logger.info("contact a supprimer identifie"); if (contactToDelete != null) {
+	 * logger.info("suppression incoming"); contactService.delete(contactToDelete);
+	 * return "redirect:/contacts"; } else { logger.error("Contact introuvable");
+	 * model.addAttribute("errorMessage", "Contact introuvable"); return "contacts";
+	 * }
+	 * 
+	 * }
+	 */
+
+	/**
+	 * test de suppression
+	 * @param contactId
+	 * @param model
+	 * @return
+	 */
+	@Transactional
+	@DeleteMapping("/{contactId}/delete/confirmDelete")
+	public String deleteContact(@PathVariable Integer contactId, Model model) {
+		logger.info("Appel de supprimecontact1");
+		contactRepository.deleteByContactId(contactId);
+
+		return "redirect:/contacts";
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

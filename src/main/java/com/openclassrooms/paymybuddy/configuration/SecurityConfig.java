@@ -23,7 +23,6 @@ public class SecurityConfig {
 		logger.info("SecurityFilterChain call");
 		
 
-		
 		http.authorizeHttpRequests((req) -> req.requestMatchers("/dashboard").authenticated()
 											.anyRequest().permitAll())
 							                .formLogin(form -> form

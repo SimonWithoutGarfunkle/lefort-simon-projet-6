@@ -34,11 +34,11 @@ VALUES
 -- Insertion des utilisateurs
 INSERT INTO utilisateur (email, mot_de_passe, nom, prenom, rib_id, comptepmb_id, role)
 VALUES
-    ('utilisateur1@example.com', 'motdepasse1', 'Nom1', 'Prénom1', 1, 1, 'USER'),
-    ('utilisateur2@example.com', 'motdepasse2', 'Nom2', 'Prénom2', 2, 2, 'USER'),
-    ('utilisateur3@example.com', 'motdepasse3', 'Nom3', 'Prénom3', 3, 3, 'USER'),
-    ('utilisateur4@example.com', 'motdepasse4', 'Nom4', 'Prénom4', 4, 4, 'USER'),
-    ('utilisateur5@example.com', 'motdepasse5', 'Nom5', 'Prénom5', 5, 5, 'USER'),
+    ('utilisateur1@example.com', 'motdepasse1', 'Nom1', 'Prenom1', 1, 1, 'USER'),
+    ('utilisateur2@example.com', 'motdepasse2', 'Nom2', 'Prenom2', 2, 2, 'USER'),
+    ('utilisateur3@example.com', 'motdepasse3', 'Nom3', 'Prenom3', 3, 3, 'USER'),
+    ('utilisateur4@example.com', 'motdepasse4', 'Nom4', 'Prenom4', 4, 4, 'USER'),
+    ('utilisateur5@example.com', 'motdepasse5', 'Nom5', 'Prenom5', 5, 5, 'USER'),
     ('simonlefort@hotmail.fr', 'aaa', 'Lefort', 'Simon', 6, 6, 'USER');
 
 -- Insertion des transactions
@@ -55,12 +55,12 @@ VALUES
 -- Insertion des contactq
 INSERT INTO contact (commentaire, email, nom, prenom, surnom, utilisateur_id )
 VALUES
-    ('coucou1', 'utilisateur1@example.com', 'Nom1', 'Prénom1', 'surnom1', 6),
-    ('coucou2', 'utilisateur2@example.com', 'Nom2', 'Prénom2', 'surnom2', 6),
-    ('coucou3', 'utilisateur3@example.com', 'Nom3', 'Prénom3', 'surnom3', 6),
-    ('coucou4', 'utilisateur4@example.com', 'Nom4', 'Prénom4', 'surnom4', 6),
-    ('coucou5', 'utilisateur5@example.com', 'Nom5', 'Prénom5', 'surnom5', 6),
-    ('coucou6', 'utilisateur6@example.com', 'Nom1', 'Prénom1', 'surnom1', 6),
-    ('coucou7', 'utilisateur7@example.com', 'Nom2', 'Prénom2', 'surnom2', 6),
-    ('coucou8', 'utilisateur8@example.com', 'Nom3', 'Prénom3', 'surnom3', 2),
-    ('coucou9', 'utilisateur9@example.com', 'Nom4', 'Prénom4', 'surnom4', 1);
+    ('coucou1', 'utilisateur1@example.com', 'Nom1', 'Prenom1', 'surnom1', 6),
+    ('coucou2', 'utilisateur2@example.com', 'Nom2', 'Prenom2', 'surnom2', 6),
+    ('coucou3', 'utilisateur3@example.com', 'Nom3', 'Prenom3', 'surnom3', 6),
+    ('coucou4', 'utilisateur4@example.com', 'Nom4', 'Prenom4', 'surnom4', 6),
+    ('coucou5', 'utilisateur5@example.com', 'Nom5', 'Prenom5', 'surnom5', 6),
+    ('coucou6', 'utilisateur6@example.com', 'Nom1', 'Prenom1', 'surnom1', 6),
+    ('coucou7', 'utilisateur7@example.com', 'Nom2', 'Prenom2', 'surnom2', 6),
+    ('coucou8', 'utilisateur8@example.com', 'Nom3', 'Prenom3', 'surnom3', 2),
+    ('coucou9', 'utilisateur9@example.com', 'Nom4', 'Prenom4', 'surnom4', 1);

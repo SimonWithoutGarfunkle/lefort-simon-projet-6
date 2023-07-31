@@ -70,6 +70,9 @@ a:hover {
 
   .contacts-pagination {
     color: #4CAF50;
+    margin-top : 15px;
+    margin-bottom : 40px;
+    
   }
 
   .contacts-pagination a {
@@ -81,4 +84,9 @@ a:hover {
 
   .contacts-pagination a:hover {
     text-decoration: underline;
+  }
+  
+  .bouton-ajout {
+  	margin-left: 25%;
+    width: 50%;
   }
