@@ -57,7 +57,8 @@ public class Utilisateur implements UserDetails {
 	@NotEmpty
 	private String prenom;
 	
-	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "utilisateur_id")
 	private List<Contact> contacts;
 	    
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)

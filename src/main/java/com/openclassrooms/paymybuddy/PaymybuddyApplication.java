@@ -18,7 +18,6 @@ import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.openclassrooms.paymybuddy.model.Utilisateur;
-import com.openclassrooms.paymybuddy.service.TransactionService;
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
 import jakarta.annotation.PostConstruct;
@@ -28,9 +27,6 @@ public class PaymybuddyApplication implements CommandLineRunner {
 
 	@Autowired
 	private DataSource dataSource;
-
-	@Autowired
-	private TransactionService transactionService;
 
 	@Autowired
 	private UtilisateurService utilisateurService;

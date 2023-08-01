@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -40,10 +38,6 @@ public class Contact {
 	
 	@Column(name = "commentaire")
 	private String commentaire;
-	
-	@ManyToOne
-	@JoinColumn(name = "utilisateur_id")
-	private Utilisateur utilisateur;
 
 	public Integer getContactId() {
 		return contactId;
@@ -53,17 +47,6 @@ public class Contact {
 		this.contactId = contactId;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public int getUtilisateurId() {
-		return utilisateur.getUtilisateurId();
-	}
 
 	public void setUtilisateurId(Integer utilisateurId) {
 		this.contactId = utilisateurId;

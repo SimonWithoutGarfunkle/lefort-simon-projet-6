@@ -74,7 +74,7 @@ public class UtilisateurController {
 
     @GetMapping("/register/success")
     public String registerSuccess() {
-        return "register-success";
+        return "registerSuccess";
     }
     
     

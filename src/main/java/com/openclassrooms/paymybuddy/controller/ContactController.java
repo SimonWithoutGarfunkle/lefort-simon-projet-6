@@ -75,6 +75,7 @@ public class ContactController {
 
 		Contact newContact = new Contact();
 		model.addAttribute("contact", newContact);
+		logger.info("contactId : "+newContact.getContactId());
 
 		return "contactForm";
 	}
@@ -90,26 +91,32 @@ public class ContactController {
 		return "contactForm";
 	}
 
+	@Transactional
 	@PostMapping("/contactForm/save")
 	public String postContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult bindingResult,
 			Model model) {
 		logger.info("Post save contactForm");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
-
-		contact.setUtilisateur(utilisateur);
-
+		
 		if (utilisateurRepository.findByEmail(contact.getEmail()) == null) {
 			logger.error("l'email ne correspond a aucun utilisateur");
 			model.addAttribute("errorMessage", "l'email ne correspond a aucun utilisateur");
 			return "contactForm";
 
 		}
-
-		contactService.saveContact(contact);
+		logger.info("contact id : "+contact.getContactId());
+		
+		if (contact.getContactId()!=null) {
+			contactService.updateContact(utilisateur, contact);
+		} else {
+			contactService.addContact(utilisateur, contact);
+		}
+		
 
 		return "redirect:/contacts";
 	}
+	
 
 	@GetMapping("/{contactId}/delete")
 	public String getDeleteForm(@PathVariable Integer contactId, Model model) {
@@ -120,38 +127,12 @@ public class ContactController {
 		return "deleteContactForm";
 	}
 
-	/*
-	 * @Transactional
-	 * 
-	 * @DeleteMapping("/{contactId}/delete/confirmDelete") public String
-	 * deleteContact(@PathVariable int contactId, Model model) {
-	 * logger.info("Appel de deleteContact");
-	 * 
-	 * Authentication authentication =
-	 * SecurityContextHolder.getContext().getAuthentication(); Utilisateur
-	 * utilisateur = (Utilisateur) authentication.getPrincipal();
-	 * 
-	 * Contact contactToDelete = contactRepository.findById(contactId);
-	 * logger.info("contact a supprimer identifie"); if (contactToDelete != null) {
-	 * logger.info("suppression incoming"); contactService.delete(contactToDelete);
-	 * return "redirect:/contacts"; } else { logger.error("Contact introuvable");
-	 * model.addAttribute("errorMessage", "Contact introuvable"); return "contacts";
-	 * }
-	 * 
-	 * }
-	 */
 
-	/**
-	 * test de suppression
-	 * @param contactId
-	 * @param model
-	 * @return
-	 */
 	@Transactional
 	@DeleteMapping("/{contactId}/delete/confirmDelete")
 	public String deleteContact(@PathVariable Integer contactId, Model model) {
-		logger.info("Appel de supprimecontact1");
-		contactRepository.deleteByContactId(contactId);
+		logger.info("Appel de delete");
+		contactService.deleteContact(contactId);
 
 		return "redirect:/contacts";
 
