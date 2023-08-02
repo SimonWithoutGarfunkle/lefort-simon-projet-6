@@ -18,6 +18,12 @@ import com.openclassrooms.paymybuddy.repository.ContactRepository;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
 
+/**
+ * Regroupe les services liés à la liste de contacts des utilisateurs, notamment le CRUD
+ * 
+ * @author Simon
+ *
+ */
 @Service
 public class ContactService {
 	
@@ -44,9 +50,9 @@ public class ContactService {
 	 * retourne tous les contacts de l'utilisateur spécifié
 	 * 
 	 * @param id de l'utilisateur
-	 * @returntous les contacts de l'utilisateur spécifié
+	 * @return tous les contacts de l'utilisateur spécifié
 	 */
-	public List<Contact> getAllContactsByUserId(int userId) {
+	public List<Contact> getAllContactsByUserId(Integer userId) {
 		logger.info("Appel de getAllContactsByUserId pour " +userId );
 		int result = contactRepository.findByUtilisateurId(userId).size();
 		logger.info("Nombre de contacts : "+result);
@@ -55,6 +61,7 @@ public class ContactService {
 	
 	/**
 	 * Vérifie que le contact est bien rattaché à l'utilisateur avant toute modification
+	 * 
 	 * @param utilisateur
 	 * @param contact
 	 * @return true si le contact appartient bien a l'utilisateur
@@ -85,14 +92,10 @@ public class ContactService {
 	 */ 
 	public Contact addContact(Utilisateur utilisateur, Contact contact) {
 		logger.info("Ajout du contact a l'utilisateur");
-
 		List<Contact> contacts = getAllContactsByUserId(utilisateur.getUtilisateurId());
 		contacts.add(contact);
-		utilisateur.setContacts(contacts);
-		
-		
+		utilisateur.setContacts(contacts);	
 		utilisateurRepository.save(utilisateur);
-
 				
 		return contact;
 		

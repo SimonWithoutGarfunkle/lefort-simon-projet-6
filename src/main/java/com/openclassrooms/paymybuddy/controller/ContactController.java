@@ -69,18 +69,18 @@ public class ContactController {
 
 	}
 
-	@GetMapping("/contactForm")
+	@GetMapping("/new")
 	public String getContactForm(Model model) {
 		logger.info("Appel de contactForm");
 
 		Contact newContact = new Contact();
 		model.addAttribute("contact", newContact);
-		logger.info("contactId : "+newContact.getContactId());
+		logger.info("contactId : " + newContact.getContactId());
 
 		return "contactForm";
 	}
 
-	@GetMapping("/contactForm/{contactId}")
+	@GetMapping("/{contactId}/edit")
 	public String getUpdateContactForm(@PathVariable Integer contactId, Model model) {
 		logger.info("Appel de getUpdateContactForm");
 
@@ -92,7 +92,7 @@ public class ContactController {
 	}
 
 	@Transactional
-	@PostMapping("/contactForm/save")
+	@PostMapping("/contactForm")
 	public String postContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult bindingResult,
 			Model model) {
 		logger.info("Post save contactForm");
@@ -129,7 +129,7 @@ public class ContactController {
 
 
 	@Transactional
-	@DeleteMapping("/{contactId}/delete/confirmDelete")
+	@DeleteMapping("/{contactId}")
 	public String deleteContact(@PathVariable Integer contactId, Model model) {
 		logger.info("Appel de delete");
 		contactService.deleteContact(contactId);

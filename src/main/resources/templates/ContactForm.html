@@ -15,7 +15,7 @@
   <div class="login-container">
     <div class="login-form">
       <h2>Fiche Contact</h2>
-      <form  action="#" th:action="@{/contacts/contactForm/save}" th:object="${contact}" method="post">
+      <form  th:action="@{/contacts/contactForm}" th:object="${contact}" method="post">
       <input type="hidden" id="contactId" name="contactId" th:value="${contact.contactId}" />
         <div class="form-group">
             <label for="email">Email*</label>

@@ -20,7 +20,7 @@ public class ComptePMB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "comptepmb_id")
-	private int comptePMBId;
+	private Integer comptePMBId;
 	
 	@Column(name = "montant")
 	private BigDecimal montant;
@@ -33,11 +33,11 @@ public class ComptePMB {
     @JsonManagedReference
     private List<Transaction> transactionsRecues;
 
-	public int getComptePMBId() {
+	public Integer getComptePMBId() {
 		return comptePMBId;
 	}
 
-	public void setComptePMBId(int comptePMBId) {
+	public void setComptePMBId(Integer comptePMBId) {
 		this.comptePMBId = comptePMBId;
 	}
 

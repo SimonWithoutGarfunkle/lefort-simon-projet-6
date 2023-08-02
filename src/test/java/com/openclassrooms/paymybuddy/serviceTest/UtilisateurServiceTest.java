@@ -2,6 +2,8 @@ package com.openclassrooms.paymybuddy.serviceTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -51,6 +53,21 @@ public class UtilisateurServiceTest {
 		
 	}
 	
+	@Test
+	public void getUtilisateurByEmailTestWrongEmail() {
+		//Arrange
+		when(utilisateurRepository.findByEmail("test@wrong.email")).thenReturn(null);
+		utilisateurTest.setEmail("test@wrong.email");
+		utilisateurTest.setPrenom("wrongEmailTest");
+				
+		//Act
+		utilisateurTest = utilisateurService.getUtilisateurByEmail("test@wrong.email");
+		
+		//Assert
+		assertNull(utilisateurTest);
+		
+	}
+	
 	
 	@Test
 	public void addUtilisateurServiceTest() {
@@ -62,7 +79,7 @@ public class UtilisateurServiceTest {
 		utilisateurService.addUtilisateur(utilisateurTest);
 		
 		//Assert
-		assertNotNull(utilisateurTest.getComptePMB().getComptePMBId());
+		assertNotNull(utilisateurTest.getComptePMB());
 		
 	}
 

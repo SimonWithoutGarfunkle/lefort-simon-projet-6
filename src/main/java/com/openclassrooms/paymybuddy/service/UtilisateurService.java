@@ -9,22 +9,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.openclassrooms.paymybuddy.model.ComptePMB;
 import com.openclassrooms.paymybuddy.model.RIB;
 import com.openclassrooms.paymybuddy.model.RoleUtilisateur;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 
-
-@Transactional
 @Service
 public class UtilisateurService implements UserDetailsService {
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -48,15 +44,16 @@ public class UtilisateurService implements UserDetailsService {
 	 * @return true si l'email correspond deja a un compte utilisateur
 	 */
 	public Utilisateur getUtilisateurByEmail(String email) {
-		logger.info("Recherche du compte "+ email);
+		logger.info("Recherche du compte " + email);
 		if (utilisateurRepository.findByEmail(email) == null) {
-			logger.error("Aucun compte ne correspond a "+ email);
+			logger.error("Aucun compte ne correspond a " + email);
 		}
 		return utilisateurRepository.findByEmail(email);
 	}
-	
+
 	/**
 	 * Met à jour dynamiquement l'utilisateur en base
+	 * 
 	 * @param utilisateur
 	 * @return l'utilisateur mis a jour
 	 */
@@ -91,24 +88,20 @@ public class UtilisateurService implements UserDetailsService {
 		utilisateur.setRole(RoleUtilisateur.USER);
 		return utilisateurRepository.save(utilisateur);
 	}
-	
-    /**
-     * Definie l'adresse email de l'utilisateur comme identifiant de connexion
-     * 
-     */
-	@Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-        Utilisateur user = utilisateurRepository.findByEmail(username);
-         
-        if (user == null) {
-            throw new UsernameNotFoundException("Aucun utilisateur ne correspond a cet identifiant");
-        }
-         
-        return user;
-    }
-	
 
-	
+	/**
+	 * Definie l'adresse email de l'utilisateur comme identifiant de connexion
+	 * 
+	 */
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Utilisateur user = utilisateurRepository.findByEmail(username);
+
+		if (user == null) {
+			throw new UsernameNotFoundException("Aucun utilisateur ne correspond a cet identifiant");
+		}
+
+		return user;
+	}
 
 }

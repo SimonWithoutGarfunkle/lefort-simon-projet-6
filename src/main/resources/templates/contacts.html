@@ -39,7 +39,7 @@
 					<td th:text="${contact.surnom}"></td>
 					<td th:text="${contact.email}"></td>
 					<td>
-					<a th:href="@{/contacts/contactForm/{contactId}(contactId=${contact.contactId})}" class="btn btn-primary">Actualiser</a>
+					<a th:href="@{/contacts/{contactId}/edit(contactId=${contact.contactId})}" class="btn btn-primary">Actualiser</a>
 					<a th:href="@{/contacts/{contactId}/delete(contactId=${contact.contactId})}" class="btn btn-danger">Supprimer</a>
 					</td>
 				</tr>
@@ -69,7 +69,7 @@
 				</div>
 			</div>
 		</div>
-		<button onclick="window.location.href = '/contacts/contactForm';" class="bouton-ajout">Ajouter un contact</button>
+		<button onclick="window.location.href = '/contacts/new';" class="bouton-ajout">Ajouter un contact</button>
 
 	</div>
 

@@ -14,7 +14,7 @@ public class RIB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "rib_id")
-	private int ribId;
+	private Integer ribId;
 	
 	@Column(name = "iban")
 	private String IBAN;
@@ -22,11 +22,11 @@ public class RIB {
 	@Column(name = "bic")
 	private String BIC;
 
-	public int getRibId() {
+	public Integer getRibId() {
 		return ribId;
 	}
 
-	public void setRibId(int ribId) {
+	public void setRibId(Integer ribId) {
 		this.ribId = ribId;
 	}
 

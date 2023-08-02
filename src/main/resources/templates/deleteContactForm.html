@@ -17,7 +17,7 @@
     <div class="login-form">
       <h2>Suppression du Contact</h2>
       <p>Vous êtes sur le point de supprimer ce contact. Etes vous sûr de vouloir poursuivre ?</p>
-      <form  id="deleteContactForm" th:object="${contact}" th:action="@{/contacts/{contactId}/delete/confirmDelete(contactId=${contact.contactId})}" method="post">
+      <form  id="deleteContactForm" th:object="${contact}" th:action="@{/contacts/{contactId}(contactId=${contact.contactId})}" method="post">
       <input type="hidden" name="_method" th:value="DELETE" />
       <input type="hidden" id="contactId" name="contactId" th:value="${contact.contactId}" />
         <div class="form-group">
