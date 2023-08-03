@@ -58,8 +58,20 @@ public class UtilisateurService implements UserDetailsService {
 	 * @return l'utilisateur mis a jour
 	 */
 	public Utilisateur updateUtilisateur(Utilisateur utilisateur) {
-		utilisateurRepository.save(utilisateur);
-		return utilisateur;
+		return utilisateurRepository.save(utilisateur);
+	}
+	
+	/**
+	 * Met à jour les champs accessible du profil de l'utilisateur
+	 * 
+	 * @param utilisateur
+	 * @return l'utilisateur mis a jour
+	 */
+	public Utilisateur updateProfilUtilisateur(Utilisateur utilisateur) {
+		Utilisateur utilisateurInBase = utilisateurRepository.findByEmail(utilisateur.getEmail());
+		utilisateurInBase.setNom(utilisateur.getNom());
+		utilisateurInBase.setPrenom(utilisateur.getPrenom());
+		return utilisateurRepository.save(utilisateurInBase);
 	}
 
 	/**

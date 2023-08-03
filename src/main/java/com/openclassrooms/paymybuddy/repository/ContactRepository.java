@@ -25,9 +25,9 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 	int deleteByContactId(Integer contactId);
 	
 	@Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)
-    Page<Contact> findByUtilisateurId(int userId, Pageable pageable);
+    Page<Contact> findByUtilisateurId(Integer userId, Pageable pageable);
 	
 	@Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)
-    List<Contact> findByUtilisateurId(int userId);
+    List<Contact> findByUtilisateurId(Integer userId);
 
 }

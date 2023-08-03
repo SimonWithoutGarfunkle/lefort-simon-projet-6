@@ -3,6 +3,8 @@ package com.openclassrooms.paymybuddy.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -10,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
@@ -42,6 +46,23 @@ public class UtilisateurController {
 	public String getLogin() {
 		logger.info("performing get login");
 		return "login";
+	}
+	
+	@GetMapping("/profil")
+	public String getProfil(Model model) {
+		logger.info("performing get profil");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
+	    model.addAttribute("utilisateur", utilisateur);
+	    
+	    return "profil";
+	}
+	
+	@PostMapping("/profil")
+	public String updateProfile(@ModelAttribute("utilisateur") Utilisateur utilisateur, Model model, BindingResult bindingResult) {
+		utilisateurService.updateProfilUtilisateur(utilisateur);
+		return "profil";
+		
 	}
 	
 

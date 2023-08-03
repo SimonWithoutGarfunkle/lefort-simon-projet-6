@@ -22,6 +22,9 @@
 						<a href="/contacts">Contacts</a>
 					</li>
 					<li th:if="${#authorization.expression('isAuthenticated()')}">
+						<a href="/profil">Profil</a>
+					</li>
+					<li th:if="${#authorization.expression('isAuthenticated()')}">
 						<form th:action="@{/logout}" method="post">
 							<button type="submit">Deconnexion</button>
 						</form>
