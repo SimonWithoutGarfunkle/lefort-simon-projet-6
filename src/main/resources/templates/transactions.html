@@ -15,34 +15,42 @@ xmlns:th="http://www.thymeleaf.org">
 
   <div class="transfer-container">
     <div class="transfer-form">
-      <h2>Transfer</h2>
-      <form>
-        <div class="form-group">
-          <label for="from">From:</label>
-          <select id="from" name="from">
-            <option value="account1">Account 1</option>
-            <option value="account2">Account 2</option>
-            <option value="account3">Account 3</option>
+      <h2>Transfert</h2>
+      <span th:if="${infoMessage}" class="info-message" th:text="${infoMessage}"></span>
+	  <span th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></span>
+	  <div class="form-group">
+				<div class="solde-container">
+					<p>
+						Votre solde : <span th:text="${utilisateur.comptePMB.montant}"></span>
+						€
+					</p>
+				</div>
+			</div>
+    <form th:action="@{/transactions}" th:object="${utilisateur}" method="post">
+      <div class="form-group">
+          <label for="action">Vous souhaitez :</label>
+          <select id="action" name="action">
+              <option value="envoyer">Envoyer</option>
+              <option value="recevoir">Recevoir</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="to">To:</label>
-          <select id="to" name="to">
-            <option value="account1">Account 1</option>
-            <option value="account2">Account 2</option>
-            <option value="account3">Account 3</option>
+      </div>
+      <div class="form-group">
+          <label for="email">Avec :</label>
+          <select id="email" name="email">
+              <option th:each="contact : ${utilisateur.contacts}" th:value="${contact.email}" th:text="${contact.email + ' ' + contact.surnom}"></option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="amount">Amount:</label>
-          <input type="text" id="amount" name="amount" placeholder="Enter amount">
-        </div>
-        <button type="submit">Transfer</button>
-      </form>
+      </div>
+      <div class="form-group">
+          <label for="montant">Montant :</label>
+          <input type="number" id="montant" name="montant" placeholder="Saisissez le montant" min="1" required>
+      </div>
+      <button type="submit">Confirmer</button>
+  </form>
+
     </div>
 
     <div class="transaction-history">
-      <h2>Transaction History</h2>
+      <h2>Historique</h2>
       <table>
         <thead>
           <tr>

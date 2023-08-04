@@ -6,15 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link th:href="@{/Styles/register.css}" rel="stylesheet" />
 <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <title>Suppression du contact</title>
 </head>
 <body>
 <div th:insert="~{fragments/header :: header}"></div>
-  <div class="login-container">
-    <div class="login-form">
+  <div class="commun-container">
+    <div class="commun-form">
       <h2>Suppression du Contact</h2>
       <p>Vous êtes sur le point de supprimer ce contact. Etes vous sûr de vouloir poursuivre ?</p>
       <form  id="deleteContactForm" th:object="${contact}" th:action="@{/contacts/{contactId}(contactId=${contact.contactId})}" method="post">

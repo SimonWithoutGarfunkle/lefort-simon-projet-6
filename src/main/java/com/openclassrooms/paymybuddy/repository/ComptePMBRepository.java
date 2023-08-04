@@ -13,10 +13,10 @@ public interface ComptePMBRepository extends JpaRepository<ComptePMB, Integer> {
 		return findById(id).orElse(null);		
 	}
 	
-	@Query(value = "SELECT c FROM utilisateur u JOIN comptePMB c ON u.comptePMB_id = c.comptePMB_id WHERE u.utilisateur_id = ?1", nativeQuery = true)
+	@Query("SELECT c FROM Utilisateur u JOIN u.comptePMB c WHERE u.utilisateurId = ?1")
 	public ComptePMB findByUtilisateurId(Integer id);
 	
-	@Query(value = "SELECT c FROM utilisateur u JOIN comptePMB c ON u.comptePMB_id = c.comptePMB_id WHERE u.email = ?1", nativeQuery = true)
+	@Query("SELECT c FROM Utilisateur u JOIN u.comptePMB c WHERE u.email = ?1")
 	public ComptePMB findByUtilisateurEmail(String email);
 	
 

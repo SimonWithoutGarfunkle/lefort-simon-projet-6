@@ -5,7 +5,6 @@ xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link th:href="@{/Styles/register.css}" rel="stylesheet" />
   <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
   <title>Register</title>
 </head>
@@ -13,8 +12,8 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:insert="~{fragments/header :: header}"></div>
 
-  <div class="login-container">
-    <div class="login-form">
+  <div class="commun-container">
+    <div class="commun-form">
       <h2>Votre inscription</h2>
       <form  action="#" th:action="@{/register/confirmRegister}" th:object="${utilisateur}" method="post">
         <div class="form-group">

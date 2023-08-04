@@ -58,6 +58,7 @@ public class UtilisateurService implements UserDetailsService {
 	 * @return l'utilisateur mis a jour
 	 */
 	public Utilisateur updateUtilisateur(Utilisateur utilisateur) {
+		logger.info("mise a jour de l'utilisateur");
 		return utilisateurRepository.save(utilisateur);
 	}
 	
@@ -68,6 +69,7 @@ public class UtilisateurService implements UserDetailsService {
 	 * @return l'utilisateur mis a jour
 	 */
 	public Utilisateur updateProfilUtilisateur(Utilisateur utilisateur) {
+		logger.info("mise a jour du profil");
 		Utilisateur utilisateurInBase = utilisateurRepository.findByEmail(utilisateur.getEmail());
 		utilisateurInBase.setNom(utilisateur.getNom());
 		utilisateurInBase.setPrenom(utilisateur.getPrenom());
