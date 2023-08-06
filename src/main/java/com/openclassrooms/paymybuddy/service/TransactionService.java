@@ -1,13 +1,22 @@
 package com.openclassrooms.paymybuddy.service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.paymybuddy.model.ComptePMB;
+import com.openclassrooms.paymybuddy.model.EtatFacturation;
+import com.openclassrooms.paymybuddy.model.StatusTransaction;
 import com.openclassrooms.paymybuddy.model.Transaction;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.ComptePMBRepository;
@@ -140,7 +149,35 @@ public class TransactionService {
 		compte2.setMontant(compte2.getMontant().add(amount));
 		comptePMBRepository.save(compte2);
 		logger.info("compte de " + utilisateur2.getNom() + " credite");
+		saveTransaction(amount, compte1, compte2);
 
+	}
+	
+	/**
+	 * génère et sauvegarde l'écriture de la transaction pour les transferts d'argent
+	 * 
+	 * @param amount de la transaction
+	 * @param compte1 emetteur
+	 * @param compte2 destinataire
+	 * @return Transaction sauvegardée
+	 */
+	public Transaction saveTransaction(BigDecimal amount, ComptePMB compte1,
+			ComptePMB compte2) {
+		logger.info("enregistrement de la transaction");
+		Date date = new Date();
+		Transaction transaction = new Transaction();
+		transaction.setEmetteur(compte1);
+		transaction.setDestinataire(compte2);
+		transaction.setSomme(amount);
+		transaction.setCommission(5);
+		transaction.setHorodatage(date);
+		transaction.setStatus(StatusTransaction.VALIDE);
+		transaction.setEtatFacturation(EtatFacturation.A_EDITER);
+		
+		transactionRepository.save(transaction);
+		
+		return transaction;
+		
 	}
 
 	/**
@@ -175,8 +212,31 @@ public class TransactionService {
 			logger.error("action non prise en charge");
 			result = 3;
 		}
+				
+		return result;
 		
+	}
+	
+	/**
+	 * Récupere la liste des transactions de l'utilisateur connecté et met en page les résultats
+	 * 
+	 * @param pageNo n° de la page de résultat en cours
+	 * @param pageSize nombre de résultat par page
+	 * @param sortField le champs utilisé pour ordonner les résultats
+	 * @param sortDirection
+	 * @return la liste des transactions de l'utilisateur connecté formatée pour etre affiché par page
+	 */
+	public Page<Transaction> findPaginatedTransactions(int pageNo, int pageSize, String sortField, String sortDirection) {
+		logger.info("pagine les transactions");
 		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    int userId = ((Utilisateur) authentication.getPrincipal()).getUtilisateurId();
+		
+		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+			Sort.by(sortField).descending();
+		Pageable pageable = PageRequest.of(pageNo -1, pageSize, sort);
+		
+		Page<Transaction> result = null;
 		return result;
 		
 	}

@@ -136,9 +136,9 @@ public class ContactService {
 	 * @param pageSize nombre de résultat par page
 	 * @param sortField le champs utilisé pour ordonner les résultats
 	 * @param sortDirection
-	 * @return la liste des contacts de l'utilisateur connecté formaté pour etre affiché par page
+	 * @return la liste des contacts de l'utilisateur connecté formatée pour etre affiché par page
 	 */
-	public Page<Contact> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Contact> findPaginatedContacts(int pageNo, int pageSize, String sortField, String sortDirection) {
 		logger.info("pagine les contacts");
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -14,20 +14,24 @@ import com.openclassrooms.paymybuddy.model.Contact;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
-	
+
 	public Optional<Contact> findById(Integer id);
-	
+
 	default Contact getContactById(Integer id) {
-        return findById(id).orElse(null);
-    }	
-	
+		return findById(id).orElse(null);
+	}
+
 	@Modifying
 	int deleteByContactId(Integer contactId);
+
 	
-	@Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)
-    Page<Contact> findByUtilisateurId(Integer userId, Pageable pageable);
-	
-	@Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)
-    List<Contact> findByUtilisateurId(Integer userId);
+	 @Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)	 
+	 Page<Contact> findByUtilisateurId(Integer userId, Pageable pageable);
+	 
+	 @Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)	 
+	 List<Contact> findByUtilisateurId(Integer userId);
+
+
+	 
 
 }

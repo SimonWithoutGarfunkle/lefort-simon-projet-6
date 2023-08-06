@@ -46,14 +46,14 @@ public class ContactController {
 	@GetMapping
 	public String getContacts(Model model) {
 		logger.info("performing get contact");
-		return findPaginated(1, "prenom", "asc", model);
+		return findPaginatedContactsController(1, "prenom", "asc", model);
 	}
 
 	@GetMapping("/page/{pageNo}")
-	public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
+	public String findPaginatedContactsController(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir, Model model) {
 		int pageSize = 5;
-		Page<Contact> page = contactService.findPaginated(pageNo, pageSize, sortField, sortDir);
+		Page<Contact> page = contactService.findPaginatedContacts(pageNo, pageSize, sortField, sortDir);
 		List<Contact> listContacts = page.getContent();
 
 		model.addAttribute("currentPage", pageNo);

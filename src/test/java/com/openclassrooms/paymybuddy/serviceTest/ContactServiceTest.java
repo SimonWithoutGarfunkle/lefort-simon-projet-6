@@ -125,7 +125,7 @@ public class ContactServiceTest {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // Act
-        Page<Contact> result = contactService.findPaginated(pageNo, pageSize, sortField, sortDirection);
+        Page<Contact> result = contactService.findPaginatedContacts(pageNo, pageSize, sortField, sortDirection);
 
         // Assert
         verify(contactRepository, times(1)).findByUtilisateurId(anyInt(), any(Pageable.class));
