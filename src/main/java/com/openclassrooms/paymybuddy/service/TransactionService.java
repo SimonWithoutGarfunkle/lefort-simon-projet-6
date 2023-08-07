@@ -2,11 +2,13 @@ package com.openclassrooms.paymybuddy.service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -230,15 +232,31 @@ public class TransactionService {
 		logger.info("pagine les transactions");
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    int userId = ((Utilisateur) authentication.getPrincipal()).getUtilisateurId();
+	    Utilisateur utilisateur = ((Utilisateur) authentication.getPrincipal());
 		
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
 		Pageable pageable = PageRequest.of(pageNo -1, pageSize, sort);
-		
-		Page<Transaction> result = null;
-		return result;
+		List<Transaction> result = getAllTransactionsFromUtilisateur(utilisateur);
+		Page<Transaction> paginatedResult = convertListToPage(result, pageable);
+		return paginatedResult;
 		
 	}
+	
+	public List<Transaction> getAllTransactionsFromUtilisateur(Utilisateur utilisateur) {
+		logger.info("Appel de getAllTransactionsFromUtilisateur");
+		List<Transaction> result = transactionRepository.findByDestinataireComptePMBId(utilisateur.getUtilisateurId());
+		result.addAll(transactionRepository.findByEmetteurComptePMBId(utilisateur.getUtilisateurId()));
+				
+		return result;
+	}
+	
+	public Page<Transaction> convertListToPage(List<Transaction> transactions, Pageable pageable) {
+	    int start = (int) pageable.getOffset();
+	    int end = Math.min((start + pageable.getPageSize()), transactions.size());
+	    return new PageImpl<>(transactions.subList(start, end), pageable, transactions.size());
+	}
+	
+	
 
 }

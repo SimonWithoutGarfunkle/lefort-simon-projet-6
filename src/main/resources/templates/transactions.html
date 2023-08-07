@@ -5,9 +5,10 @@ xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/Styles/transactions.css}">
+  <link th:href="@{/Styles/transactions.css}" rel="stylesheet" >
   <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
-  <title>Transfert</title>
+  <link th:href="@{/Styles/table.css}" rel="stylesheet" />
+  <title>Transactions</title>
 </head>
 
 <body>
@@ -48,52 +49,64 @@ xmlns:th="http://www.thymeleaf.org">
   </form>
 
     </div>
+    <div class="container history-form">
+		<h1>Mes transactions</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th><a
+						th:href="@{'/transactions/page/' + ${currentPage} + '?sortField=prenom&sortDir=' + ${reverseSortDir}}">
+							Type</a></th>
+					<th><a
+						th:href="@{'/transactions/page/' + ${currentPage} + '?sortField=nom&sortDir=' + ${reverseSortDir}}">
+							Contact</a></th>
+					<th><a
+						th:href="@{'/transactions/page/' + ${currentPage} + '?sortField=somme&sortDir=' + ${reverseSortDir}}">
+							Montant</a></th>
+					<th><a
+						th:href="@{'/transactions/page/' + ${currentPage} + '?sortField=horodatage&sortDir=' + ${reverseSortDir}}">
+							Date</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="transaction : ${listTransactions}">
+					<td th:class="${transaction.emetteur.utilisateur.email == utilisateur.email} ? 'text-rouge' : 'text-vert'" th:text="${transaction.emetteur.utilisateur.email == utilisateur.email}? 'Envoyé' : 'Reçu' "></td>
+					<td th:text="${transaction.emetteur.utilisateur.email == utilisateur.email ? 
+                 #strings.concat(transaction.destinataire.utilisateur.prenom, ' ', transaction.destinataire.utilisateur.nom) :
+                 #strings.concat(transaction.emetteur.utilisateur.prenom, ' ', transaction.emetteur.utilisateur.nom)}"></td>
 
-    <div class="transaction-history">
-      <h2>Historique</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Contact</th>
-            <th>Description</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>John Doe</td>
-            <td>Payment for services</td>
-            <td>$50.00</td>
-          </tr>
-          <tr>
-            <td>Jane Smith</td>
-            <td>Product purchase</td>
-            <td>$25.00</td>
-          </tr>
-          <tr>
-            <td>David Johnson</td>
-            <td>Monthly subscription</td>
-            <td>$10.00</td>
-          </tr>
-          <tr>
-            <td>Sarah Adams</td>
-            <td>Loan repayment</td>
-            <td>$75.00</td>
-          </tr>
-          <tr>
-            <td>Mark Wilson</td>
-            <td>Gift transfer</td>
-            <td>$20.00</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="pagination">
-        <button class="prev-page">Previous</button>
-        <button class="next-page">Next</button>
-      </div>
-    </div>
-  </div>
+					<td th:class="${transaction.emetteur.utilisateur.email == utilisateur.email} ? 'text-rouge' : 'text-vert'" th:text="${transaction.somme}+' €'"></td>
+					<td th:text="${transaction.horodatage}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div th:if="${totalPages > 1}"  class="contacts-pagination">
+			<div class="row col-sm-10">
+				<div class="col-sm-2">Total transactions : [[${totalItems}]]</div>
+				<div class="col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/transactions/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+				<div class="col-sm-1">
+					<a th:if="${currentPage > 1}"
+						th:href="@{'/transactions/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Prec.</a>
+					<span th:unless="${currentPage > 1}">Prec.</span>
+				</div>
 
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/transactions/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Suivante</a>
+					<span th:unless="${currentPage < totalPages}">Suivante</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
   <footer>
     <!-- Votre contenu de pied de page ici -->
   </footer>

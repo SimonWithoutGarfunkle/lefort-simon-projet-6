@@ -13,16 +13,16 @@
 					<li th:if="${#authorization.expression('isAnonymous()')}"><a
 						href="register">S'inscrire</a></li>
 					<li th:if="${#authorization.expression('isAuthenticated()')}">
-						<a href="/dashboard">Accueil</a>
+						<a href="dashboard">Accueil</a>
 					</li>
 					<li th:if="${#authorization.expression('isAuthenticated()')}">
-						<a href="/transactions">Transactions</a>
+						<a href="transactions">Transactions</a>
 					</li>
 					<li th:if="${#authorization.expression('isAuthenticated()')}">
-						<a href="/contacts">Contacts</a>
+						<a href="contacts">Contacts</a>
 					</li>
 					<li th:if="${#authorization.expression('isAuthenticated()')}">
-						<a href="/profil">Profil</a>
+						<a href="profil">Profil</a>
 					</li>
 					<li th:if="${#authorization.expression('isAuthenticated()')}">
 						<form th:action="@{/logout}" method="post">

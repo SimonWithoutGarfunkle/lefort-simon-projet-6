@@ -17,10 +17,15 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
 		return findById(id).orElse(null);
 	}
 	
-	 @Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)	 
-	 Page<Transaction> findByUtilisateurId(Integer userId, Pageable pageable);
-	 
-	 @Query(value = "SELECT * FROM contact WHERE utilisateur_id = :userId", nativeQuery = true)	 
-	 List<Transaction> findByUtilisateurId(Integer userId);
+	List<Transaction> findByEmetteurComptePMBId(Integer id);
+	
+	List<Transaction> findByDestinataireComptePMBId(Integer id);
+	
+	@Query("SELECT t FROM Transaction t WHERE t.destinataire.comptePMBId = :id")
+	Page<Transaction> findByDestinataireComptePMBId(Integer id, Pageable pageable);
+	
+	@Query("SELECT t FROM Transaction t WHERE t.emetteur.comptePMBId = :id")
+	Page<Transaction> findByEmetteurComptePMBId(Integer id, Pageable pageable);
+
 
 }
