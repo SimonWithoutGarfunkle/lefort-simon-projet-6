@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +33,17 @@ public class ComptePMB {
     @OneToMany(mappedBy = "destinataire")
     @JsonManagedReference
     private List<Transaction> transactionsRecues;
+    
+    @OneToOne(mappedBy = "comptePMB")
+    private Utilisateur utilisateur;
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 
 	public Integer getComptePMBId() {
 		return comptePMBId;
