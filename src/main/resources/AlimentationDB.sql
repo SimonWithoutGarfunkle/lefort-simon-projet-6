@@ -42,15 +42,15 @@ VALUES
     ('simonlefort@hotmail.fr', 'aaa', 'Lefort', 'Simon', 6, 6, 'USER');
 
 -- Insertion des transactions
-INSERT INTO transaction (emetteur_id, destinataire_id, somme, commission, horodatage, status, etat_facturation)
+INSERT INTO transaction (emetteur_id, destinataire_id, somme, commission, montant_commission, horodatage, status, etat_facturation)
 VALUES
-    (1, 6, 100.0, 5.0, CURRENT_TIMESTAMP, 'VALIDE', 'A_EDITER'),
-    (1, 3, 50.0, 2.5, CURRENT_TIMESTAMP, 'EN_COURS', 'EN_COURS'),
-    (2, 4, 75.0, 3.75, CURRENT_TIMESTAMP, 'VALIDE', 'GENEREE'),
-    (3, 5, 200.0, 10.0, CURRENT_TIMESTAMP, 'EN_COURS', 'COMPTABILISEE'),
-    (4, 5, 150.0, 7.5, CURRENT_TIMESTAMP, 'VALIDE', 'COMPTABILISEE'),
-    (6, 1, 50.0, 2.5, CURRENT_TIMESTAMP, 'EN_COURS', 'EN_COURS'),
-    (6, 3, 75.0, 3.75, CURRENT_TIMESTAMP, 'VALIDE', 'GENEREE');
+    (1, 6, 100.0, 5.0, 5.0, CURRENT_TIMESTAMP, 'VALIDE', 'A_EDITER'),
+    (1, 3, 50.0, 2.5, 1.25, CURRENT_TIMESTAMP, 'EN_COURS', 'EN_COURS'),
+    (2, 4, 75.0, 3.75, 2.81, CURRENT_TIMESTAMP, 'VALIDE', 'GENEREE'),
+    (3, 5, 200.0, 10.0, 20.0, CURRENT_TIMESTAMP, 'EN_COURS', 'COMPTABILISEE'),
+    (4, 5, 150.0, 7.5, 11.25, CURRENT_TIMESTAMP, 'VALIDE', 'COMPTABILISEE'),
+    (6, 1, 50.0, 2.5, 1.25, CURRENT_TIMESTAMP, 'EN_COURS', 'EN_COURS'),
+    (6, 3, 75.0, 3.75, 2.81, CURRENT_TIMESTAMP, 'VALIDE', 'GENEREE');
     
 -- Insertion des contactq
 INSERT INTO contact (commentaire, email, nom, prenom, surnom, utilisateur_id )

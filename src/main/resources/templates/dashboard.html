@@ -13,6 +13,7 @@
 
 	<div class="commun-container">
 		<div class="login-form" >
+		<img class="centered-image" th:src="@{/paymybuddy.png}" alt="PayMyBuddy Image">
 			<h2>Dashboard</h2>
 			<p th:text="'Bonjour ' +${#authentication.principal.getPrenom()}">Hello a vous</p>
 		</div>

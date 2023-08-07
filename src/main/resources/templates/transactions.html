@@ -64,6 +64,9 @@ xmlns:th="http://www.thymeleaf.org">
 						th:href="@{'/transactions/page/' + ${currentPage} + '?sortField=somme&sortDir=' + ${reverseSortDir}}">
 							Montant</a></th>
 					<th><a
+						th:href="@{'/transactions/page/' + ${currentPage} + '?sortField=montantCommission&sortDir=' + ${reverseSortDir}}">
+							Commission</a></th>		
+					<th><a
 						th:href="@{'/transactions/page/' + ${currentPage} + '?sortField=horodatage&sortDir=' + ${reverseSortDir}}">
 							Date</a></th>
 				</tr>
@@ -76,6 +79,7 @@ xmlns:th="http://www.thymeleaf.org">
                  #strings.concat(transaction.emetteur.utilisateur.prenom, ' ', transaction.emetteur.utilisateur.nom)}"></td>
 
 					<td th:class="${transaction.emetteur.utilisateur.email == utilisateur.email} ? 'text-rouge' : 'text-vert'" th:text="${transaction.somme}+' €'"></td>
+					<td th:text="${transaction.montantCommission}+' €'"></td>
 					<td th:text="${transaction.horodatage}"></td>
 				</tr>
 			</tbody>

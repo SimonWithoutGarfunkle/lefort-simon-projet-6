@@ -24,6 +24,9 @@ public class SecurityConfig {
 		
 
 		http.authorizeHttpRequests((req) -> req.requestMatchers("/dashboard").authenticated()
+				.requestMatchers("/transactions").authenticated()
+				.requestMatchers("/contacts").authenticated()
+				.requestMatchers("/profil").authenticated()
 											.anyRequest().permitAll())
 							                .formLogin(form -> form
 							                    .loginPage("/login")

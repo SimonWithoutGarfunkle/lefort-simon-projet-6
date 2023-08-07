@@ -1,6 +1,7 @@
 package com.openclassrooms.paymybuddy.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 
@@ -139,19 +140,24 @@ public class TransactionService {
 	 * @param utilisateur2 recoie les fonds
 	 * @return true si l'opération a fonctionné
 	 */
-	public void utilisateur1SendMoneyToUtilisateur2(BigDecimal amount, Utilisateur utilisateur1,
+	public Transaction utilisateur1SendMoneyToUtilisateur2(BigDecimal amount, Utilisateur utilisateur1,
 			Utilisateur utilisateur2) {
 		logger.info("perform utilisateur1SendMoneyToUtilisateur2");
-
+		
 		ComptePMB compte1 = getComptePMB(utilisateur1);
+		ComptePMB compte2 = getComptePMB(utilisateur2);
+		BigDecimal montantCommission = calculCommission(0.5f, amount);
+		Transaction transaction = saveTransaction(amount, montantCommission, compte1, compte2);
+		
 		compte1.setMontant(compte1.getMontant().subtract(amount));
 		comptePMBRepository.save(compte1);
-		logger.info("compte de " + utilisateur1.getNom() + " debite");
-		ComptePMB compte2 = getComptePMB(utilisateur2);
-		compte2.setMontant(compte2.getMontant().add(amount));
+		logger.info("compte de " + utilisateur1.getNom() + " debite");		
+		compte2.setMontant(compte2.getMontant().add(amount).subtract(montantCommission));
 		comptePMBRepository.save(compte2);
 		logger.info("compte de " + utilisateur2.getNom() + " credite");
-		saveTransaction(amount, compte1, compte2);
+		
+		return transaction;
+		
 
 	}
 	
@@ -163,7 +169,7 @@ public class TransactionService {
 	 * @param compte2 destinataire
 	 * @return Transaction sauvegardée
 	 */
-	public Transaction saveTransaction(BigDecimal amount, ComptePMB compte1,
+	public Transaction saveTransaction(BigDecimal amount, BigDecimal montantCommission, ComptePMB compte1,
 			ComptePMB compte2) {
 		logger.info("enregistrement de la transaction");
 		Date date = new Date();
@@ -171,7 +177,8 @@ public class TransactionService {
 		transaction.setEmetteur(compte1);
 		transaction.setDestinataire(compte2);
 		transaction.setSomme(amount);
-		transaction.setCommission(5);
+		transaction.setCommission(0.5f);
+		transaction.setMontantCommission(montantCommission);
 		transaction.setHorodatage(date);
 		transaction.setStatus(StatusTransaction.VALIDE);
 		transaction.setEtatFacturation(EtatFacturation.A_EDITER);
@@ -243,6 +250,13 @@ public class TransactionService {
 		
 	}
 	
+	/**
+	 * Retourne toutes les transactions liées à l'utilisateur
+	 * Qu'il soit emetteur ou destinataire
+	 * 
+	 * @param utilisateur
+	 * @return Liste de transactions liées à l'utilisateur
+	 */
 	public List<Transaction> getAllTransactionsFromUtilisateur(Utilisateur utilisateur) {
 		logger.info("Appel de getAllTransactionsFromUtilisateur");
 		List<Transaction> result = transactionRepository.findByDestinataireComptePMBId(utilisateur.getUtilisateurId());
@@ -251,10 +265,44 @@ public class TransactionService {
 		return result;
 	}
 	
+	/**
+	 * Converti une liste de transaction en Page de transaction
+	 * Pour un meilleur affichage en front
+	 * 
+	 * @param transactions la liste a convertir en page
+	 * @param pageable
+	 * @return 
+	 */
 	public Page<Transaction> convertListToPage(List<Transaction> transactions, Pageable pageable) {
-	    int start = (int) pageable.getOffset();
+	    logger.info("appel de convertListToPage");
+		int start = (int) pageable.getOffset();
 	    int end = Math.min((start + pageable.getPageSize()), transactions.size());
 	    return new PageImpl<>(transactions.subList(start, end), pageable, transactions.size());
+	}
+	
+	/**
+	 * Calcul la commission a prélever sur le transfert entre les utilisateurs
+	 * @param commission partie numérique, du taux de commission, a diviser par 100 pour les calculs 
+	 * @param montant de la transaction
+	 * @return montant de la commission a prélever sur le destinataire du transfert
+	 */
+	public BigDecimal calculCommission(float commission, BigDecimal montant) {
+		logger.info("appel de calculCommission");
+		BigDecimal commissionPercent = BigDecimal.valueOf(commission);
+        BigDecimal result = montant.multiply(commissionPercent).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+        return result;
+		
+	}
+	
+	/**
+	 * Calcul la commission a prélever
+	 * 
+	 * @param transaction
+	 * @return montant de la commission a prélever sur le destinataire du transfert
+	 * @see #calculCommission(float, BigDecimal)
+	 */
+	public BigDecimal calculCommission(Transaction transaction) {
+		return calculCommission(transaction.getCommission(), transaction.getSomme());
 	}
 	
 	

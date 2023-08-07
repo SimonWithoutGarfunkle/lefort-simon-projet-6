@@ -40,6 +40,17 @@ public class Transaction {
 	@Column(name = "commission")
 	private float commission;
 	
+	@Column(name = "montant_commission")
+	private BigDecimal montantCommission;
+	
+	public BigDecimal getMontantCommission() {
+		return montantCommission;
+	}
+
+	public void setMontantCommission(BigDecimal montantCommission) {
+		this.montantCommission = montantCommission;
+	}
+
 	@Column(name = "horodatage")
 	private Date horodatage;
 	
