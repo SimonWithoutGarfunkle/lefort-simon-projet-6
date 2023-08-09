@@ -34,36 +34,36 @@ public class UtilisateurController {
 
 	@GetMapping("/dashboard")
 	public String getDashboard() {
-		logger.info("performing get dashboard");
+		logger.info("appel get dashboard");
 		return "dashboard";
 	}
 
 	@GetMapping("/403")
 	public String error403() {
-		logger.info("performing get error 403");
+		logger.info("appel get error 403");
 		return "/error/403";
 	}
 
 	@GetMapping("/login")
 	public String getLogin() {
-		logger.info("performing get login");
+		logger.info("appel get login");
 		return "login";
 	}
 
 	@GetMapping("/profil")
 	public String getProfil(Model model) {
-		logger.info("performing get profil");
+		logger.info("appel get profil");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
 		Utilisateur utilisateurAJour = utilisateurService.getUtilisateurByEmail(utilisateur.getEmail());
 		model.addAttribute("utilisateur", utilisateurAJour);
 		
-		 if (model.containsAttribute("infoMessage")) {
+		if (model.containsAttribute("infoMessage")) {
 		        model.addAttribute("infoMessage", model.getAttribute("infoMessage"));
 		    }
 		    if (model.containsAttribute("errorMessage")) {
 		        model.addAttribute("errorMessage", model.getAttribute("errorMessage"));
-		    }
+		    }		
 
 		return "profil";
 	}
@@ -71,7 +71,7 @@ public class UtilisateurController {
 	@PostMapping("/profil")
 	public String updateProfile(@ModelAttribute("utilisateur") Utilisateur utilisateur, Model model,
 			BindingResult bindingResult) {
-		logger.info("performing update profil");
+		logger.info("appel update profil");
 		Utilisateur utilisateurAJour = new Utilisateur();
 		utilisateurAJour = utilisateurService.updateProfilUtilisateur(utilisateur);
 		model.addAttribute("utilisateur", utilisateurAJour);
@@ -84,7 +84,7 @@ public class UtilisateurController {
 	@Transactional
 	@PostMapping("/profil/banking")
 	public String bankingOperation(@RequestParam BigDecimal montant, @RequestParam String action, Model model) {
-		logger.info("performing post bank : "+action);
+		logger.info("appel post bank : "+action);
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
@@ -111,8 +111,16 @@ public class UtilisateurController {
 
 	@GetMapping("/register")
 	public String getRegister(Model model) {
-		logger.info("performing get register");
+		logger.info("appel get register");
 		model.addAttribute("utilisateur", new Utilisateur());
+		return "register";
+	}
+	
+	@GetMapping("/register/social")
+	public String getRegisterSocial(Model model) {
+		logger.info("appel get register");
+		Utilisateur utilisateur = utilisateurService.firstSocialLoginUtilisateur();
+		model.addAttribute("utilisateur", utilisateur);
 		return "register";
 	}
 
@@ -120,7 +128,7 @@ public class UtilisateurController {
 	@PostMapping("/register/confirmRegister")
 	public String confirmRegister(@ModelAttribute("utilisateur") @Valid Utilisateur utilisateur,
 			BindingResult bindingResult, Model model) {
-		logger.info("performing post register");
+		logger.info("appel post register");
 		try {
 			utilisateurService.addUtilisateur(utilisateur);
 		} catch (IllegalArgumentException e) {

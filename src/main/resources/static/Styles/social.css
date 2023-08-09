@@ -5,11 +5,11 @@
 }
 
 .gray-line {
-    width: 20%; /* Ajustez la longueur du trait */
+    width: 20%;
     height: 1px;
-    background-color: #ccc; /* Couleur grise */
+    background-color: #ccc;
     display: inline-block;
-    margin: 3px 3px; /* Espacement du haut et des côtés */
+    margin: 3px 3px;
 }
     
 .logo-button {

@@ -4,10 +4,13 @@ import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Service;
 import com.openclassrooms.paymybuddy.model.ComptePMB;
 import com.openclassrooms.paymybuddy.model.RIB;
@@ -102,12 +105,29 @@ public class UtilisateurService implements UserDetailsService {
 		utilisateur.setRole(RoleUtilisateur.USER);
 		return utilisateurRepository.save(utilisateur);
 	}
+	
+	public Utilisateur firstSocialLoginUtilisateur() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		DefaultOAuth2User oauth2User = (DefaultOAuth2User) authentication.getPrincipal();
+		String email = (String) oauth2User.getAttributes().get("email");
+		if (!(utilisateurRepository.findByEmail(email)==null)) {
+			return utilisateurRepository.findByEmail(email);
+			
+		}
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setEmail(email);
+		utilisateur.setNom((String) oauth2User.getAttributes().get("family_name"));
+		utilisateur.setPrenom((String) oauth2User.getAttributes().get("given_name"));
+		
+		
+		return utilisateur;
+	
+	}
 
 	/**
 	 * Definie l'adresse email de l'utilisateur comme identifiant de connexion
 	 * 
-	 */
-	 
+	 */	 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Utilisateur user = utilisateurRepository.findByEmail(username);

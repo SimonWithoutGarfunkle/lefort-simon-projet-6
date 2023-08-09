@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
 @Configuration
@@ -18,6 +20,7 @@ public class SecurityConfig {
 	private static Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 	
 
+	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		logger.info("Appel deSecurityFilterChain");
@@ -34,6 +37,7 @@ public class SecurityConfig {
 								                .passwordParameter("motdepasse")
 							                    .defaultSuccessUrl("/dashboard")
 							                    .failureUrl("/login?error")
+							                    .failureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"))
 							                )							                
 							                .logout((logout) ->
 							 					logout.logoutUrl("/logout")
@@ -42,10 +46,17 @@ public class SecurityConfig {
 							 						.invalidateHttpSession(true)
 							 						.clearAuthentication(true)
 							 						.permitAll())
+							                .oauth2Login()
+							                .loginPage("/login")
+							                .defaultSuccessUrl("/register/social");
+		                
+							                
+							                /*
 							                .oauth2Login(oauth2Login ->
 							                oauth2Login
 									                .loginPage("login")
-								                    .defaultSuccessUrl("http://localhost:8080/paymybuddy/dashboard"));
+								                    .defaultSuccessUrl("/dashboard"));*/
+							                
 									                
 		
 		return http.build();

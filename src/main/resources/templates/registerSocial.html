@@ -6,12 +6,12 @@ xmlns:th="http://www.thymeleaf.org">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
-  <link th:href="@{/Styles/social.css}" rel="stylesheet" />
+
   <title>Register</title>
 </head>
 
 <body>
-<div th:insert="~{fragments/headerNotLogged :: header}"></div>
+<div th:insert="~{fragments/header :: header}"></div>
 
   <div class="commun-container">
     <div class="commun-form">
@@ -38,15 +38,6 @@ xmlns:th="http://www.thymeleaf.org">
           <button type="submit">S'inscrire</button>
         </div>
       </form>
-      				<div class="centered-text">
-					<hr class="gray-line">
-   					<span>Ou se connecter avec</span>
-   					<hr class="gray-line">
-				</div>
-				<div class="logo-login">
-			        <a href="http://localhost:8080/paymybuddy/oauth2/authorization/google"><img th:src="@{/logo-google.png}" alt="Logo google" class="logo-button"></a>
-			        <a href="http://localhost:8080/paymybuddy/oauth2/authorization/github"><img th:src="@{/logo-github.png}" alt="Logo github" class="logo-button"></a>
-			    </div>
     </div>
   </div>
 

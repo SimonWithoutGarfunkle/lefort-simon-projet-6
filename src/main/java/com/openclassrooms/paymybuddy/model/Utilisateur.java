@@ -26,7 +26,6 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @DynamicUpdate
 @Table(name = "utilisateur")
