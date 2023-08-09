@@ -107,6 +107,7 @@ public class UtilisateurService implements UserDetailsService {
 	 * Definie l'adresse email de l'utilisateur comme identifiant de connexion
 	 * 
 	 */
+	 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Utilisateur user = utilisateurRepository.findByEmail(username);
@@ -117,5 +118,6 @@ public class UtilisateurService implements UserDetailsService {
 
 		return user;
 	}
+
 
 }

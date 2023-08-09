@@ -20,28 +20,33 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		logger.info("SecurityFilterChain call");
+		logger.info("Appel deSecurityFilterChain");
 		
 
 		http.authorizeHttpRequests((req) -> req.requestMatchers("/dashboard").authenticated()
 				.requestMatchers("/transactions").authenticated()
 				.requestMatchers("/contacts").authenticated()
 				.requestMatchers("/profil").authenticated()
-											.anyRequest().permitAll())
+											.anyRequest().permitAll())											
 							                .formLogin(form -> form
 							                    .loginPage("/login")
 							                    .usernameParameter("email")
 								                .passwordParameter("motdepasse")
 							                    .defaultSuccessUrl("/dashboard")
 							                    .failureUrl("/login?error")
-							                )
+							                )							                
 							                .logout((logout) ->
 							 					logout.logoutUrl("/logout")
 							 						.deleteCookies("remove")
 							 						.logoutSuccessUrl("/login")
 							 						.invalidateHttpSession(true)
 							 						.clearAuthentication(true)
-							 						.permitAll());
+							 						.permitAll())
+							                .oauth2Login(oauth2Login ->
+							                oauth2Login
+									                .loginPage("login")
+								                    .defaultSuccessUrl("http://localhost:8080/paymybuddy/dashboard"));
+									                
 		
 		return http.build();
 	}

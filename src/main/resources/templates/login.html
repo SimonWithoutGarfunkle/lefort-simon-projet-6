@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
+<link th:href="@{/Styles/login.css}" rel="stylesheet" />
 <title>Login</title>
 </head>
 <body>
@@ -37,8 +38,18 @@
 				<p class="register-link">
 					Pas encore inscrit ? <a href="/register">Inscrivez-vous ici</a>
 				</p>
+				<div class="centered-text">
+					<hr class="gray-line">
+   					<span>Ou se connecter avec</span>
+   					<hr class="gray-line">
+				</div>
+				<div class="logo-login">
+			        <a href="http://localhost:8080/paymybuddy/oauth2/authorization/google"><img th:src="@{/logo-google.png}" alt="Logo google" class="logo-button"></a>
+			        <a href="http://localhost:8080/paymybuddy/oauth2/authorization/github"><img th:src="@{/logo-github.png}" alt="Logo github" class="logo-button"></a>
+			    </div>
 			</div>
 		</div>
+		
 
 
 
