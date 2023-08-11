@@ -35,8 +35,8 @@ public class SecurityConfig {
 							                    .usernameParameter("email")
 								                .passwordParameter("motdepasse")
 							                    .defaultSuccessUrl("/dashboard")
-							                    .failureUrl("/login")
-							                    .failureHandler(new SimpleUrlAuthenticationFailureHandler("/login"))
+							                    .failureUrl("/login?error")
+							                    .failureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"))
 							                )							                
 							                .logout((logout) ->
 							 					logout.logoutUrl("/logout")
@@ -47,10 +47,9 @@ public class SecurityConfig {
 							 						.permitAll())
 							                .oauth2Login(oauth2Login ->
 							                oauth2Login
-									                .loginPage("/login")
-								                    .defaultSuccessUrl("http://localhost:8080/paymybuddy/register/social")
-								                    .failureUrl("/login")
-								                    .loginProcessingUrl("http://localhost:8080/paymybuddy/login"));
+									                .loginPage("/register")
+								                    .defaultSuccessUrl("/register/social")
+								                    .failureUrl("/login?error"));
 		return http.build();      
 							                
 							                

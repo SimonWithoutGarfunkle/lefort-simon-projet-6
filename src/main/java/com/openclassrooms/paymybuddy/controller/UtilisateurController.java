@@ -121,7 +121,7 @@ public class UtilisateurController {
 		logger.info("appel get register");
 		Utilisateur utilisateur = utilisateurService.firstSocialLoginUtilisateur();
 		model.addAttribute("utilisateur", utilisateur);
-		return "register";
+		return "registerSocial";
 	}
 	
 	@GetMapping("/login/oauth2/code/facebook")
