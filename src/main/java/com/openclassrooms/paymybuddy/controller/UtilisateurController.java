@@ -123,6 +123,14 @@ public class UtilisateurController {
 		model.addAttribute("utilisateur", utilisateur);
 		return "register";
 	}
+	
+	@GetMapping("/login/oauth2/code/facebook")
+	public String getRegisterFacebook(Model model) {
+		logger.info("appel get register facebook");
+		Utilisateur utilisateur = utilisateurService.firstSocialLoginUtilisateur();
+		model.addAttribute("utilisateur", utilisateur);
+		return "register";
+	}
 
 	@Transactional
 	@PostMapping("/register/confirmRegister")

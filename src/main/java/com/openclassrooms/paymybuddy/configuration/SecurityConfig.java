@@ -20,7 +20,6 @@ public class SecurityConfig {
 	private static Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 	
 
-	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		logger.info("Appel deSecurityFilterChain");
@@ -36,8 +35,8 @@ public class SecurityConfig {
 							                    .usernameParameter("email")
 								                .passwordParameter("motdepasse")
 							                    .defaultSuccessUrl("/dashboard")
-							                    .failureUrl("/login?error")
-							                    .failureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"))
+							                    .failureUrl("/login")
+							                    .failureHandler(new SimpleUrlAuthenticationFailureHandler("/login"))
 							                )							                
 							                .logout((logout) ->
 							 					logout.logoutUrl("/logout")
@@ -46,20 +45,15 @@ public class SecurityConfig {
 							 						.invalidateHttpSession(true)
 							 						.clearAuthentication(true)
 							 						.permitAll())
-							                .oauth2Login()
-							                .loginPage("/login")
-							                .defaultSuccessUrl("/register/social");
-		                
-							                
-							                /*
 							                .oauth2Login(oauth2Login ->
 							                oauth2Login
-									                .loginPage("login")
-								                    .defaultSuccessUrl("/dashboard"));*/
+									                .loginPage("/login")
+								                    .defaultSuccessUrl("http://localhost:8080/paymybuddy/register/social")
+								                    .failureUrl("/login")
+								                    .loginProcessingUrl("http://localhost:8080/paymybuddy/login"));
+		return http.build();      
 							                
-									                
-		
-		return http.build();
+							                
 	}
 	
 	
