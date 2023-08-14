@@ -23,14 +23,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
 @DynamicUpdate
 @Table(name = "utilisateur")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Utilisateur implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
@@ -72,6 +68,28 @@ public class Utilisateur implements UserDetails {
 	@Enumerated(EnumType.STRING)
     private RoleUtilisateur role;
 	
+
+	public Utilisateur(int utilisateurId, @NotEmpty String email, @NotEmpty String motDePasse, @NotEmpty String nom,
+			@NotEmpty String prenom, List<Contact> contacts, RIB rib, ComptePMB comptePMB, RoleUtilisateur role) {
+		super();
+		this.utilisateurId = utilisateurId;
+		this.email = email;
+		this.motDePasse = motDePasse;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.contacts = contacts;
+		this.rib = rib;
+		this.comptePMB = comptePMB;
+		this.role = role;
+	}
+	
+	
+
+	public Utilisateur() {
+		super();
+	}
+
+
 
 	public RoleUtilisateur getRole() {
 		return role;

@@ -54,10 +54,10 @@ public class UtilisateurController {
 	public String getProfil(Model model) {
 		logger.info("appel get profil");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
-		Utilisateur utilisateurAJour = utilisateurService.getUtilisateurByEmail(utilisateur.getEmail());
+		Utilisateur utilisateurLogged = (Utilisateur) authentication.getPrincipal();
+		Utilisateur utilisateurAJour = utilisateurService.getUtilisateurByEmail(utilisateurLogged.getEmail());
 		model.addAttribute("utilisateur", utilisateurAJour);
-		
+		logger.info("utilisateurAJour id :"+utilisateurAJour.getUtilisateurId());
 		if (model.containsAttribute("infoMessage")) {
 		        model.addAttribute("infoMessage", model.getAttribute("infoMessage"));
 		    }
@@ -93,6 +93,10 @@ public class UtilisateurController {
 			 result = transactionService.debitToBankAccount(montant, utilisateur);
 		} else if ("credit".equals(action)) {
 			result = transactionService.creditFromBankAccount(montant, utilisateur);
+		} else {
+			result = false;
+			String Message = "Action non prise en charge";
+			model.addAttribute("actionErrorMessage", Message);
 		}
 		 		 
 		if (result) {
@@ -123,14 +127,7 @@ public class UtilisateurController {
 		model.addAttribute("utilisateur", utilisateur);
 		return "registerSocial";
 	}
-	
-	@GetMapping("/login/oauth2/code/facebook")
-	public String getRegisterFacebook(Model model) {
-		logger.info("appel get register facebook");
-		Utilisateur utilisateur = utilisateurService.firstSocialLoginUtilisateur();
-		model.addAttribute("utilisateur", utilisateur);
-		return "register";
-	}
+
 
 	@Transactional
 	@PostMapping("/register/confirmRegister")

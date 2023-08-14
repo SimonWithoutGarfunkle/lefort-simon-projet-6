@@ -82,7 +82,7 @@ public class TransactionService {
 	 * @return true si l'opération a fonctionné
 	 */
 	public boolean debitToBankAccount(BigDecimal amount, Utilisateur utilisateur) {
-		logger.info("debit bank account from " + utilisateur.getNom() + " of euros : " + amount);
+		logger.info("debite le compte de " + utilisateur.getNom() + " de euros : " + amount);
 
 		if (controleAmountBeforeDebit(amount, utilisateur)) {
 			ComptePMB compte = getComptePMB(utilisateur);
@@ -91,7 +91,7 @@ public class TransactionService {
 			return true;
 
 		} else {
-			logger.error("not enough money on the account to perform the operation");
+			logger.error("fonds insuffisant");
 			return false;
 		}
 
@@ -105,7 +105,7 @@ public class TransactionService {
 	 * @return true
 	 */
 	public boolean creditFromBankAccount(BigDecimal amount, Utilisateur utilisateur) {
-		logger.info("credit bank account from " + utilisateur.getNom() + " of euros : " + amount);
+		logger.info("credite le compte de " + utilisateur.getNom() + " de euros : " + amount);
 		ComptePMB compte = getComptePMB(utilisateur);
 		compte.setMontant(amount.add(compte.getMontant()));
 		comptePMBRepository.save(compte);
@@ -121,10 +121,10 @@ public class TransactionService {
 	 * @return true si l'utilisateur dispose bien des fonds
 	 */
 	public boolean controleAmountBeforeDebit(BigDecimal amount, Utilisateur utilisateur) {
-		logger.info("check account amount");
+		logger.info("vérification du solde disponible");
 		ComptePMB compte = getComptePMB(utilisateur);
 		if (compte.getMontant().compareTo(amount) < 0) {
-			logger.error("not enough money");
+			logger.error("fonds insuffisant");
 			return false;
 		} else {
 			return true;
@@ -142,7 +142,7 @@ public class TransactionService {
 	 */
 	public Transaction utilisateur1SendMoneyToUtilisateur2(BigDecimal amount, Utilisateur utilisateur1,
 			Utilisateur utilisateur2) {
-		logger.info("perform utilisateur1SendMoneyToUtilisateur2");
+		logger.info("appel de utilisateur1SendMoneyToUtilisateur2");
 		
 		ComptePMB compte1 = getComptePMB(utilisateur1);
 		ComptePMB compte2 = getComptePMB(utilisateur2);
@@ -199,7 +199,7 @@ public class TransactionService {
 	 * return int code qui précise le cas rencontré pour le controller
 	 */
 	public int moneyTransfertService(BigDecimal amount, String action, String email, Utilisateur utilisateur) {
-		logger.info("perform moneyTransfertService");
+		logger.info("appel de moneyTransfertService");
 		Utilisateur utilisateur2 = utilisateurService.getUtilisateurByEmail(email);
 		//inchangé si l'on demande trop d'argent a notre contact
 		int result=0;

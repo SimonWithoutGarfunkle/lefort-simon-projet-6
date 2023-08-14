@@ -9,14 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Entity
 @DynamicUpdate
 @Table(name = "contact")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Contact {
 	
 	@Id
@@ -46,6 +42,24 @@ public class Contact {
 	public Contact(String nom, String email) {
 		this.nom = nom;
 		this.email = email;
+	}
+
+
+	public Contact() {
+		super();
+	}
+
+
+	public Contact(Integer contactId, @NotEmpty String email, String telephone, String nom, String prenom,
+			String surnom, String commentaire) {
+		super();
+		this.contactId = contactId;
+		this.email = email;
+		this.telephone = telephone;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.surnom = surnom;
+		this.commentaire = commentaire;
 	}
 
 

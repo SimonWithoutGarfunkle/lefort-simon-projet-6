@@ -82,6 +82,10 @@ public class ContactService {
 		
 	}
 	
+	public Contact getContactByContactId(Integer contactId) {
+		return contactRepository.getContactById(contactId);
+	}
+	
 	
 	/**
 	 * Ajoute un contact à la liste de contact de l'utilisateur

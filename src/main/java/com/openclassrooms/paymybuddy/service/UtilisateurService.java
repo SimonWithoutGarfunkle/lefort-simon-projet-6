@@ -106,7 +106,13 @@ public class UtilisateurService implements UserDetailsService {
 		return utilisateurRepository.save(utilisateur);
 	}
 	
+	/**
+	 * Génère un utilisateur pré rempli avec les informations récupérées de la connexion via Google
+	 * 
+	 * @returnutilisateur pré rempli avec les informations récupérées de la connexion via Google
+	 */
 	public Utilisateur firstSocialLoginUtilisateur() {
+		logger.info("appel de firstSocialLoginUtilisateur");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		DefaultOAuth2User oauth2User = (DefaultOAuth2User) authentication.getPrincipal();
 		String email = (String) oauth2User.getAttributes().get("email");
@@ -130,6 +136,7 @@ public class UtilisateurService implements UserDetailsService {
 	 */	 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		logger.info("appel de loadUserByUsername");
 		Utilisateur user = utilisateurRepository.findByEmail(username);
 
 		if (user == null) {

@@ -37,8 +37,6 @@ public class TransactionController {
 	@GetMapping
 	public String getTransactions(Model model) {
 		logger.info("Appel de la page Transactions");
-		
-		//return "transactions";
 		return findPaginatedTransactionsController(1, "horodatage" ,"asc", model);
 	}
 	

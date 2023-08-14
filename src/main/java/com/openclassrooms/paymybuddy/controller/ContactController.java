@@ -25,6 +25,7 @@ import com.openclassrooms.paymybuddy.model.Utilisateur;
 import com.openclassrooms.paymybuddy.repository.ContactRepository;
 import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 import com.openclassrooms.paymybuddy.service.ContactService;
+import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
 import jakarta.validation.Valid;
 
@@ -36,22 +37,20 @@ public class ContactController {
 	private ContactService contactService;
 
 	@Autowired
-	private ContactRepository contactRepository;
-
-	@Autowired
-	private UtilisateurRepository utilisateurRepository;
+	private UtilisateurService utilisateurService;
 
 	private static Logger logger = LoggerFactory.getLogger(ContactController.class);
 
 	@GetMapping
 	public String getContacts(Model model) {
-		logger.info("performing get contact");
+		logger.info("Appel get contact");
 		return findPaginatedContactsController(1, "prenom", "asc", model);
 	}
 
 	@GetMapping("/page/{pageNo}")
 	public String findPaginatedContactsController(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir, Model model) {
+		logger.info("Appel get contact");
 		int pageSize = 5;
 		Page<Contact> page = contactService.findPaginatedContacts(pageNo, pageSize, sortField, sortDir);
 		List<Contact> listContacts = page.getContent();
@@ -84,7 +83,7 @@ public class ContactController {
 	public String getUpdateContactForm(@PathVariable Integer contactId, Model model) {
 		logger.info("Appel de getUpdateContactForm");
 
-		Contact existingContact = contactRepository.getContactById(contactId);
+		Contact existingContact = contactService.getContactByContactId(contactId);
 
 		model.addAttribute("contact", existingContact);
 
@@ -99,7 +98,7 @@ public class ContactController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = (Utilisateur) authentication.getPrincipal();
 		
-		if (utilisateurRepository.findByEmail(contact.getEmail()) == null) {
+		if (utilisateurService.getUtilisateurByEmail(contact.getEmail()) == null) {
 			logger.error("l'email ne correspond a aucun utilisateur");
 			model.addAttribute("errorMessage", "l'email ne correspond a aucun utilisateur");
 			return "contactForm";
@@ -121,7 +120,7 @@ public class ContactController {
 	@GetMapping("/{contactId}/delete")
 	public String getDeleteForm(@PathVariable Integer contactId, Model model) {
 		logger.info("Appel de deleteForm");
-		Contact contactToDelete = contactRepository.getContactById(contactId);
+		Contact contactToDelete = contactService.getContactByContactId(contactId);
 
 		model.addAttribute("contact", contactToDelete);
 		return "deleteContactForm";
