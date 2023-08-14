@@ -78,7 +78,7 @@ public class UtilisateurControllerTest {
 	@WithMockUser
 	public void testGetDashboard() throws Exception {
 	     mockMvc.perform(MockMvcRequestBuilders.get("/dashboard")
-	    		 .with(user(utilisateurTest)))
+	    		.with(user(utilisateurTest)))
 	            .andExpect(MockMvcResultMatchers.status().isOk())
 	            .andExpect(MockMvcResultMatchers.view().name("dashboard"));
    }

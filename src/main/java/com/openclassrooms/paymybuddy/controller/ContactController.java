@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.openclassrooms.paymybuddy.model.Contact;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
-import com.openclassrooms.paymybuddy.repository.ContactRepository;
-import com.openclassrooms.paymybuddy.repository.UtilisateurRepository;
 import com.openclassrooms.paymybuddy.service.ContactService;
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
