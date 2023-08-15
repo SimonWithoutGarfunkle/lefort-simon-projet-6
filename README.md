@@ -67,16 +67,16 @@ Pour simplifier la découverte du programme, l'écran de login est pré-rempli a
 ### Ressources
 Le dépot GitHub contient tous les éléments.
 
-* Base de données :
+**Base de données :**
 Le script "AlimentationDB.sql" qui pré rempli les tables est disponible dans :
 src/main/resources
 
-* Front :
+**Front :**
 Le front est fait en HTML et CSS avec Thymeleaf. Vous pouvez retrouver les fichiers :
 - CSS : src/main/resources/static
 - HTML : src/main/resources/templates
 - images : src/main/resources/public
 
-* Schemas :
+**Schemas :**
 - Diagramme UML : src\main\resources\Diagramme UML PMB final.pdf
 - Modèle physique de données : src\main\resources\ER Diagram.png
