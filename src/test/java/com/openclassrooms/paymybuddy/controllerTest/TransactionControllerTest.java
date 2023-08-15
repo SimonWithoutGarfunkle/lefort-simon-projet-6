@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.openclassrooms.paymybuddy.model.Contact;
 import com.openclassrooms.paymybuddy.model.Utilisateur;
+import com.openclassrooms.paymybuddy.service.ContactService;
 import com.openclassrooms.paymybuddy.service.TransactionService;
 import com.openclassrooms.paymybuddy.service.UtilisateurService;
 
@@ -40,27 +41,14 @@ public class TransactionControllerTest {
 	@Autowired
 	private UtilisateurService utilisateurService;
 	
+	@Autowired
+	private ContactService contactService;
+	
 	@BeforeEach
 	public void setUp() {
-		//Pour les tests l'utilisateur test est son propre contact
-		contact = new Contact();
-		contact.setEmail("test@example.com");
-		contact.setNom("Doe");
-		contact.setPrenom("John");
-		contact.setSurnom("surnomContact");
-		contact.setCommentaire("comment");
-		List<Contact> contacts = new ArrayList<Contact>();
-		contacts.add(contact);
-		utilisateurTest = new Utilisateur();
-		utilisateurTest.setEmail("test@example.com");
-		utilisateurTest.setMotDePasse("testpassword");
-		utilisateurTest.setNom("Doe");
-		utilisateurTest.setPrenom("John");
-		utilisateurTest.setContacts(contacts);
-		
-		utilisateurService.addUtilisateur(utilisateurTest);
-		BigDecimal initialAmount = new BigDecimal(200.0);
-		transactionService.creditFromBankAccount(initialAmount, utilisateurTest);
+		//Utilisation des valeurs pré chargées dans la base de test pour avoir un compte avec des contacts complets
+		utilisateurTest = utilisateurService.getUtilisateurByEmail("simonlefort@hotmail.fr");
+		contact = contactService.getContactByContactId(1);
 						
 		
 	}
@@ -85,6 +73,71 @@ public class TransactionControllerTest {
 				.param("sortDir", "desc")
 				.with(user(utilisateurTest)))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	@WithMockUser
+	public void testMoneyTransfertSend() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.post("/transactions")
+				.param("montant", "50")
+				.param("action", "recevoir")
+				.param("email", contact.getEmail())
+				.with(user(utilisateurTest)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.view().name("transactions"))
+				.andExpect(MockMvcResultMatchers.model().attribute("infoMessage","Argent recu !"));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testMoneyTransfertSendNotEnough() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.post("/transactions")
+				.param("montant", "500000")
+				.param("action", "envoyer")
+				.param("email", contact.getEmail())
+				.with(user(utilisateurTest)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.view().name("transactions"))
+				.andExpect(MockMvcResultMatchers.model().attribute("errorMessage","Votre solde est insuffisant"));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testMoneyTransfertReceive() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.post("/transactions")
+				.param("montant", "50")
+				.param("action", "envoyer")
+				.param("email", contact.getEmail())
+				.with(user(utilisateurTest)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.view().name("transactions"))
+				.andExpect(MockMvcResultMatchers.model().attribute("infoMessage","Argent envoyé ! "));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testMoneyTransfertReceiveNotEnough() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.post("/transactions")
+				.param("montant", "5000")
+				.param("action", "recevoir")
+				.param("email", contact.getEmail())
+				.with(user(utilisateurTest)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.view().name("transactions"))
+				.andExpect(MockMvcResultMatchers.model().attribute("errorMessage","La demande n'a pas pu aboutir"));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testMoneyTransfertSendWrongAction() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.post("/transactions")
+				.param("montant", "50")
+				.param("action", "wrongAction")
+				.param("email", contact.getEmail())
+				.with(user(utilisateurTest)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.view().name("transactions"))
+				.andExpect(MockMvcResultMatchers.model().attribute("errorMessage","Action non prise en charge"));
 	}
 
 }
