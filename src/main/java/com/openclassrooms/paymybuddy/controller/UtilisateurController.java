@@ -37,6 +37,12 @@ public class UtilisateurController {
 		logger.info("appel get dashboard");
 		return "dashboard";
 	}
+	
+	@GetMapping
+	public String homePage() {
+		logger.info("appel homePage");
+		return "login";
+	}
 
 	@GetMapping("/403")
 	public String error403() {
