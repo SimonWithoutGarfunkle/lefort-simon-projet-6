@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/Styles/transactions.css}" rel="stylesheet" >
+  <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
+  <link th:href="@{/Styles/table.css}" rel="stylesheet" />
+  <title>Transactions</title>
+</head>
+
+<body>
+<div th:insert="~{fragments/headerLogged :: header}"></div>
+
+  <div class="transfer-container">
+    <div class="transfer-form">
+    <a th:href="@{/contacts/new}">
+    		<button class="bouton-ajout-transfert">Ajout contact</button>
+		</a>
+      <h2>Transfert</h2>
+      <span th:if="${infoMessage}" class="info-message" th:text="${infoMessage}"></span>
+	  <span th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></span>
+	  <div class="form-group">
+				<div class="solde-container">
+					<p>
+						Votre solde : <span th:text="${utilisateur.comptePMB.montant}"></span>
+						€
+					</p>
+				</div>
+			</div>
+    <form th:action="@{/transactions}" th:object="${utilisateur}" method="post">
+      <div class="form-group">
+          <label for="action">Vous souhaitez :</label>
+          <select id="action" name="action">
+              <option value="envoyer">Envoyer</option>
+              <option value="recevoir">Recevoir</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="email">Avec :</label>
+          <select id="email" name="email">
+              <option th:each="contact : ${utilisateur.contacts}" th:value="${contact.email}" th:text="${contact.email + ' ' + contact.surnom}"></option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="montant">Montant :</label>
+          <input type="number" id="montant" name="montant" placeholder="Saisissez le montant" min="1" required>
+      </div>
+      <button type="submit">Confirmer</button>
+  </form>
+
+    </div>
+    <div class="history-form">
+		<h1>Mes transactions</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Contact</th>
+					<th>Montant</th>
+					<th>Commission</th>		
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="transaction : ${listTransactions}">
+					<td th:class="${transaction.emetteur.utilisateur.email == utilisateur.email} ? 'text-rouge' : 'text-vert'" th:text="${transaction.emetteur.utilisateur.email == utilisateur.email}? 'Envoyé' : 'Reçu' "></td>
+					<td th:text="${transaction.emetteur.utilisateur.email == utilisateur.email ? 
+                 #strings.concat(transaction.destinataire.utilisateur.prenom, ' ', transaction.destinataire.utilisateur.nom) :
+                 #strings.concat(transaction.emetteur.utilisateur.prenom, ' ', transaction.emetteur.utilisateur.nom)}"></td>
+
+					<td th:class="${transaction.emetteur.utilisateur.email == utilisateur.email} ? 'text-rouge' : 'text-vert'" th:text="${transaction.somme}+' €'"></td>
+					<td th:text="${transaction.montantCommission}+' €'"></td>
+					<td th:text="${transaction.horodatage}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div th:if="${totalPages > 1}"  class="contacts-pagination">
+			<div class="row col-sm-10">
+				<div class="col-sm-2">Total transactions : [[${totalItems}]]</div>
+				<div class="col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/transactions/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+				<div class="col-sm-1">
+					<a th:if="${currentPage > 1}"
+						th:href="@{'/transactions/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Prec.</a>
+					<span th:unless="${currentPage > 1}">Prec.</span>
+				</div>
+
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/transactions/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Suivante</a>
+					<span th:unless="${currentPage < totalPages}">Suivante</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+  <footer>
+    <!-- Votre contenu de pied de page ici -->
+  </footer>
+</body>
+
+</html>

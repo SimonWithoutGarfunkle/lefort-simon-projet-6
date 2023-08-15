@@ -1,0 +1,48 @@
+.transfer-container {
+	display: flex;
+	justify-content:center;
+	align-items: flex-start;
+	min-height: 100vh;
+	background-color: #f5f5f5;
+	padding: 20px;
+	flex-wrap: wrap;
+	gap: 50px;
+}
+
+.transfer-form {
+	flex: 1;
+	max-width: 400px;
+	padding: 20px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.text-rouge {
+	color: red;
+}
+
+.text-vert {
+	color: green;
+}
+
+.history-form {
+	flex: 1;
+	max-width: 800px;
+	margin-right: 20px;
+	padding: 20px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+  .bouton-ajout-transfert {
+  	margin-right: 5%;
+  	float : right;
+    width: 30%;
+    background-color: #0275D8;
+  }
+  
+  .bouton-ajout-transfert:hover {
+  background-color: #0156a3;
+}

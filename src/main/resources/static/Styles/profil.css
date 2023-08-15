@@ -1,0 +1,34 @@
+.button-profil {
+    display: flex;
+    gap: 10px;
+}
+
+.button-profil button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-profil .envoyerArgent {
+    background-color: #69be6d;
+    color: #ffffff;
+}
+
+.button-profil .envoyerArgent:hover {
+    background-color: #429746;
+    color: #ffffff;
+}
+
+.button-profil .recevoirArgent {
+    background-color: #429746;
+    color: #ffffff;
+}
+
+.button-profil .recevoirArgent:hover {
+    background-color: #69be6d;
+    color: #ffffff;
+}
+

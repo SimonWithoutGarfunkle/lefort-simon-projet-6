@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
+  <link th:href="@{/Styles/social.css}" rel="stylesheet" />
+  <title>Register</title>
+</head>
+
+<body>
+<div th:insert="~{fragments/headerNotLogged :: header}"></div>
+
+  <div class="commun-container">
+    <div class="commun-form">
+      <h2>Votre inscription</h2>
+      <form  action="#" th:action="@{/register/confirmRegister}" th:object="${utilisateur}" method="post">
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Saisissez votre prénom" th:field="*{prenom}" required>
+        </div>
+        <div class="form-group">
+            <label for="prenom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Saisissez votre nom" th:field="*{nom}" required>
+          </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Saisissez votre email" th:field="*{email}" required>
+            <span th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></span>
+          </div>
+        <div class="form-group">
+            <label for="motdepasse">Mot de passe</label>
+            <input type="password" id="motdepasse" name="motdepasse" placeholder="Saisissez votre mot de passe" th:field="*{motDePasse}" required>
+          </div>
+        <div class="form-group">
+          <button type="submit">S'inscrire</button>
+        </div>
+      </form>
+      				<div class="centered-text">
+					<hr class="gray-line">
+   					<span>Ou s'inscrire avec</span>
+   					<hr class="gray-line">
+				</div>
+				<div class="logo-login">
+			        <a href="http://localhost:8080/paymybuddy/oauth2/authorization/google"><img th:src="@{/logo-google.png}" alt="Logo google" class="logo-button"></a>
+			    </div>
+    </div>
+  </div>
+
+  <footer>
+  </footer>
+</body>
+
+</html>
+

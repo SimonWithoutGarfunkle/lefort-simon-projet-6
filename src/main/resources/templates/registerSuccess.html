@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link th:href="@{/Styles/Style.css}" rel="stylesheet" />
+  <title>Register</title>
+</head>
+
+<body>
+<div th:insert="~{fragments/headerNotLogged :: header}"></div>
+
+    <div class="commun-container">
+    <div class="commun-form">
+        <h2>Votre inscription est validée !</h2>
+        <p>Merci pour votre inscription. Vous pouvez désormais vous connecter pour accéder à nos services.</p>
+        <button type="button" onclick="window.location.href='/paymybuddy/login'">Se connecter</button>
+    </div>
+</div>
+
+  <footer>
+  </footer>
+</body>
+
+</html>
+

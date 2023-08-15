@@ -1,0 +1,49 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/Styles/Style.css}" rel="stylesheet" />
+<link th:href="@{/Styles/social.css}" rel="stylesheet" />
+<title>Login</title>
+</head>
+<body>
+<div th:insert="~{fragments/headerNotLogged :: header}"></div>
+
+		<div class="commun-container">
+			<div class="commun-form">
+			<img class="centered-image" th:src="@{/paymybuddy.png}" alt="PayMyBuddy Image">
+				<h2>Connexion</h2>
+				<form th:action="@{/login}" method="post">
+					<div class="form-group">
+						<label for="email">Email</label> <input type="text" id="email"
+							name="email" placeholder="Saisissez votre email" value="simonlefort@hotmail.fr"
+							required>
+					</div>
+					<div class="form-group">
+						<label for="motdepasse">Mot de passe</label> <input
+							type="password" id="motdepasse" name="motdepasse"
+							placeholder="Saisissez votre mot de passe" value="aaa"
+							required>
+					</div>
+					<div class="form-group">
+						<button type="submit">Se connecter</button>
+						<span th:if="${error}" class="error-message"
+							th:text="${errorMessage}"></span>
+					</div>
+				</form>
+				<p class="register-link">
+					Pas encore inscrit ? <a href="register">Inscrivez-vous ici</a>
+				</p>
+			</div>
+		</div>
+		
+
+
+
+	<footer> </footer>
+</body>
+</html>

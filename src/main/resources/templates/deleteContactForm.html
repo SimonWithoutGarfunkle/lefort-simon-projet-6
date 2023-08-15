@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/Styles/Style.css}" rel="stylesheet" />
+<title>Suppression du contact</title>
+</head>
+<body>
+<div th:insert="~{fragments/headerLogged :: header}"></div>
+  <div class="commun-container">
+    <div class="commun-form">
+      <h2>Suppression du Contact</h2>
+      <p>Vous êtes sur le point de supprimer ce contact. Etes vous sûr de vouloir poursuivre ?</p>
+      <form  id="deleteContactForm" th:object="${contact}" th:action="@{/contacts/{contactId}(contactId=${contact.contactId})}" method="post">
+      <input type="hidden" name="_method" th:value="DELETE" />
+      <input type="hidden" id="contactId" name="contactId" th:value="${contact.contactId}" />
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Saisissez l'email" th:field="*{email}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="text" id="telephone" name="telephone" placeholder="Saisissez le téléphone" th:field="*{telephone}" readonly>
+          </div>
+        
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Saisissez le nom" th:field="*{nom}" readonly>
+          </div>
+          <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Saisissez le prénom" th:field="*{prenom}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="surnom">Surnom</label>
+            <input type="text" id="surnom" name="surnom" placeholder="Saisissez le surnom" th:field="*{surnom}" readonly>
+          </div>
+        <div class="form-group">
+            <label for="commentaire">Commentaire</label>
+            <input type="text" id="commentaire" name="commentaire" placeholder="Saisissez un commentaire" th:field="*{commentaire}" readonly>
+          </div>
+        <div class="form-group">
+          <button type="submit" >Supprimer</button>
+          <span th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

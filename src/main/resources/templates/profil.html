@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/Styles/Style.css}" rel="stylesheet" />
+<link th:href="@{/Styles/profil.css}" rel="stylesheet" />
+<title>Profil</title>
+
+</head>
+
+<body>
+	<div th:insert="~{fragments/headerLogged :: header}"></div>
+
+	<div class="commun-container">
+		<div class="commun-form">
+			<h2>Votre compte</h2>
+
+			<form th:action="@{/profil}" th:object="${utilisateur}" method="post">
+				<input type="hidden" id="utilisateurId" name="utilisateurId"
+					th:value="${utilisateur.utilisateurId}" />
+					<span th:if="${infoMessage}" class="info-message" th:text="${infoMessage}"></span>
+					<span th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></span>
+				<div class="form-group">
+					<label for="email">Email</label> <input type="email" id="email"
+						name="email" th:field="*{email}" readonly>
+				</div>
+				<div class="form-group">
+					<label for="prenom">Nom</label> <input type="text" id="nom"
+						name="nom" th:field="*{nom}" required>
+				</div>
+				<div class="form-group">
+					<label for="prenom">Prénom</label> <input type="text" id="prenom"
+						name="prenom" th:field="*{prenom}" required>
+				</div>
+				<div class="form-group">
+					<button type="submit">Sauvegarder</button>
+				</div>
+			</form>
+			<div class="form-group">
+				<div class="solde-container">
+					<p>
+						Votre solde : <span th:text="${utilisateur.comptePMB.montant}"></span>
+						€
+					</p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<p>Agir avec votre banque :</p>
+				<form th:action="@{/profil/banking}" method="post">
+					<div class="form-group">
+						<label for="montant">Montant :</label>
+						<input type="number" name="montant" id="montant" min="1" required>
+					</div>
+					<div class="button-profil">
+						<button type="submit" class="envoyerArgent" name="action"
+							value="debit">Débit</button>
+						<button type="submit" class="recevoirArgent" name="action"
+							value="credit">Crédit</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<footer> </footer>
+</body>
+
+</html>
+
